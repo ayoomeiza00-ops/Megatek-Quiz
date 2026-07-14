@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Megatek Quiz - Boss Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f8f9fa; padding: 20px; }
+        .dashboard { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #cc0000; padding-bottom: 15px; margin-bottom: 20px; }
+        h1 { color: #cc0000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #cc0000; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .rank-1 { font-weight: bold; color: #cc0000; background: #fff5f5; }
+        .refresh-btn { background: #cc0000; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+        .timestamp { color: #888; margin-top: 20px; text-align: center; }
+        .no-data { text-align: center; color: #888; padding: 40px; }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <header>
+        <h1>🏆 Overall Rankings</h1>
+        <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+    </header>
+    <p>Live summary of all schools and points across all rounds.</p>
+    <div id="rankings"><p class="no-data">Loading...</p></div>
+    <div class="timestamp" id="timestamp"></div>
+</div>
+<script>
+    async function loadData() {
+        const res = await fetch('/api/scores/all');
+        const data = await res.json();
+        const container = document.getElementById('rankings');
+        const ts = document.getElementById('timestamp');
+        ts.textContent = `Last updated: ${new Date().toLocaleString()}`;
+
+        if (!data.length) {
+            container.innerHTML = '<p class="no-data">No scores recorded yet.</p>';
+            return;
+        }
+
+        let html = `<table>
+            <thead><tr><th>Rank</th><th>School</th><th>Total Points</th></tr></thead><tbody>`;
+        data.forEach((item, idx) => {
+            const rankClass = idx === 0 ? 'rank-1' : '';
+            html += `<tr class="${rankClass}">
+                <td>#${idx + 1}</td>
+                <td><strong>${item.name}</strong></td>
+                <td>${item.total}</td>
+            </tr>`;
+        });
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+
+    loadData();
+    setInterval(loadData, 30000);
+</script>
+</body>
+</html>

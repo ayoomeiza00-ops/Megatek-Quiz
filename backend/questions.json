@@ -1,0 +1,1952 @@
+[
+  {
+    "id": 1,
+    "question": "Computers are described as \"tireless\" mainly because they can work for long hours without __________, unlike humans.",
+    "options": [
+      "improving",
+      "getting fatigued",
+      "learning",
+      "charging"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 2,
+    "question": "A key difference between a computer and a simple machine like a bicycle is that a computer can __________.",
+    "options": [
+      "move without pedaling",
+      "process data and follow a set of instructions",
+      "never break down",
+      "work only outdoors"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 3,
+    "question": "When we say a computer works with great \"speed,\" it means it can complete tasks in a __________ time compared to a human.",
+    "options": [
+      "longer",
+      "very short",
+      "random",
+      "unpredictable"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 4,
+    "question": "The main reason computers rarely make mistakes on their own is their high level of __________.",
+    "options": [
+      "imagination",
+      "accuracy",
+      "emotion",
+      "tiredness"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 5,
+    "question": "A computer is called an \"automatic\" machine because once given instructions, it can __________ tasks without needing constant human guidance.",
+    "options": [
+      "refuse",
+      "carry out",
+      "forget",
+      "delay"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 6,
+    "question": "Computers help people at work mainly because they __________.",
+    "options": [
+      "eliminate the need for any human effort",
+      "make repetitive and complex tasks faster and more accurate",
+      "only work in offices",
+      "cannot be used for learning"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 7,
+    "question": "A computer laboratory is set up differently from a normal classroom mainly because it needs __________.",
+    "options": [
+      "more chairs",
+      "proper electricity, ventilation, and safety arrangements",
+      "no teacher supervision",
+      "louder decorations"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 8,
+    "question": "Good posture while using a computer is important mainly to prevent __________ over time.",
+    "options": [
+      "faster typing",
+      "body strain and poor eyesight",
+      "better memory",
+      "internet problems"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 9,
+    "question": "Hospitals rely heavily on computers mainly because computers can __________.",
+    "options": [
+      "replace all doctors",
+      "accurately store and manage patient records and treatment schedules",
+      "only print prescriptions",
+      "cook meals for patients"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 10,
+    "question": "Banks rely heavily on computers mainly because computers can __________.",
+    "options": [
+      "accurately calculate, store, and track large amounts of money and transactions",
+      "replace the need for bank buildings",
+      "only print receipts",
+      "refuse to handle numbers"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 11,
+    "question": "The main advantage of a laptop over a desktop computer is its __________.",
+    "options": [
+      "larger screen",
+      "portability",
+      "higher price",
+      "permanent placement"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 12,
+    "question": "A tablet differs from a laptop mainly because it usually __________.",
+    "options": [
+      "has a touch screen and no fixed physical keyboard",
+      "cannot be carried around",
+      "has no screen at all",
+      "is heavier than a desktop"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 13,
+    "question": "Mainframe computers are mainly used by __________ that need to process huge volumes of data at once.",
+    "options": [
+      "individual students",
+      "large organizations and companies",
+      "small shops",
+      "toy manufacturers"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 14,
+    "question": "Which of these correctly ranks computers from MOST portable to LEAST portable?",
+    "options": [
+      "Desktop, Laptop, Smartphone",
+      "Smartphone, Laptop, Desktop",
+      "Laptop, Desktop, Smartphone",
+      "Desktop, Smartphone, Laptop"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 15,
+    "question": "A smartphone can be classified as a computer because it can __________, not just make calls.",
+    "options": [
+      "only ring loudly",
+      "process data, run apps, and connect to the internet",
+      "never be charged",
+      "only take pictures"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 16,
+    "question": "Desktop computers are often more powerful for heavy tasks than most laptops mainly because they __________.",
+    "options": [
+      "have better cooling and can house larger components",
+      "are smaller in size",
+      "have no keyboard",
+      "cannot be upgraded"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 17,
+    "question": "Choosing a laptop instead of a desktop would be most useful for someone who needs to __________.",
+    "options": [
+      "keep the computer permanently in one office",
+      "travel and work from different locations",
+      "avoid using electricity",
+      "avoid typing"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 18,
+    "question": "Which computer would MOST likely be used to control an entire company's staff payroll and databases?",
+    "options": [
+      "Smartphone",
+      "Tablet",
+      "Mainframe computer",
+      "Calculator"
+    ],
+    "correct": 2,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 19,
+    "question": "A key reason a computer is more useful than a calculator for schoolwork is that a computer can __________.",
+    "options": [
+      "only add and subtract",
+      "store files, browse the internet, and run many types of programs",
+      "never show numbers",
+      "work only on batteries"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 20,
+    "question": "Computers are found in so many different places, such as homes, schools, banks, and hospitals, mainly because they __________.",
+    "options": [
+      "can be adapted to perform many different useful tasks",
+      "are always the same size",
+      "only work with electricity in banks",
+      "cannot connect to networks"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 21,
+    "question": "If the CPU is described as the \"brain\" of the computer, this means it is mainly responsible for __________.",
+    "options": [
+      "displaying pictures",
+      "processing instructions and controlling operations",
+      "producing sound",
+      "storing paper files"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 22,
+    "question": "Which of these is NOT typically found inside the system unit?",
+    "options": [
+      "Motherboard",
+      "Hard disk",
+      "Monitor",
+      "CPU"
+    ],
+    "correct": 2,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 23,
+    "question": "The monitor and the system unit work together so that the monitor can __________.",
+    "options": [
+      "power the whole computer",
+      "display the results processed by the system unit",
+      "type documents",
+      "store files permanently"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 24,
+    "question": "The keyboard and the mouse are both necessary mainly because __________.",
+    "options": [
+      "the keyboard enters text and commands, while the mouse selects and navigates",
+      "they both only display images",
+      "they perform the exact same function",
+      "only one of them is an input device"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 25,
+    "question": "A \"port\" on a system unit is best described as a __________.",
+    "options": [
+      "button used to power on the computer",
+      "connection point where devices like a mouse or flash drive can be plugged in",
+      "type of software",
+      "storage file"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 26,
+    "question": "If a computer's cooling fan stopped working, the component MOST likely to be affected is the __________.",
+    "options": [
+      "monitor's brightness",
+      "CPU, which could overheat",
+      "mouse's scroll wheel",
+      "keyboard's spacebar"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 27,
+    "question": "The CPU is often compared to the human brain rather than the human hand mainly because it __________.",
+    "options": [
+      "processes information and makes decisions, similar to how the brain thinks",
+      "is shaped like a brain",
+      "types documents",
+      "only stores memories"
+    ],
+    "correct": 0,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 28,
+    "question": "If a computer's monitor stops working but the system unit keeps running, which is MOST likely still possible, though difficult?",
+    "options": [
+      "Seeing new documents clearly",
+      "Typing and saving a document without being able to see it",
+      "Nothing at all can be done",
+      "The internet connection is automatically lost"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 29,
+    "question": "Which pair correctly matches a hardware part with its main purpose?",
+    "options": [
+      "Mouse \u2013 prints documents",
+      "Monitor \u2013 displays visual output",
+      "Keyboard \u2013 produces sound",
+      "Printer \u2013 types text"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 30,
+    "question": "The system unit is often called the \"hub\" of the computer because it __________.",
+    "options": [
+      "only displays pictures",
+      "houses and connects the main components that make the computer function",
+      "is where we type our names",
+      "produces printed paper copies"
+    ],
+    "correct": 1,
+    "round": 1,
+    "time_limit": 15
+  },
+  {
+    "id": 31,
+    "question": "Input devices are important to a computer system mainly because they __________.",
+    "options": [
+      "give out results to the user",
+      "allow users to send data and commands into the computer for processing",
+      "only store files permanently",
+      "cool the CPU"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 32,
+    "question": "A scanner and a digital camera are similar because both can be used to __________.",
+    "options": [
+      "print documents",
+      "convert physical images into digital data for the computer",
+      "play music",
+      "delete files"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 33,
+    "question": "The BEST example of converting spoken words into digital input for a computer is __________.",
+    "options": [
+      "using a mouse",
+      "using a microphone with voice recognition software",
+      "using a monitor",
+      "using a printer"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 34,
+    "question": "If a student wants to enter a hand-drawn picture into a computer for editing, the most suitable input device is a __________.",
+    "options": [
+      "speaker",
+      "scanner",
+      "printer",
+      "monitor"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 35,
+    "question": "A keyboard is generally more suitable than a mouse for entering large amounts of text mainly because a keyboard __________.",
+    "options": [
+      "lets us type letters and numbers directly",
+      "can type faster than any mouse can click",
+      "cannot type numbers",
+      "is used only for sound"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 36,
+    "question": "A mouse sends both movement and click commands into the computer at the same time, which makes it a/an __________ device.",
+    "options": [
+      "output",
+      "input",
+      "storage",
+      "power"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 37,
+    "question": "A joystick, often used for gaming, is classified as an input device because it __________.",
+    "options": [
+      "displays the game on the screen",
+      "sends directional and control signals into the computer",
+      "prints game scores",
+      "stores game files"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 38,
+    "question": "The key difference between a microphone and a speaker is that a microphone __________.",
+    "options": [
+      "sends sound into the computer, while a speaker sends sound out",
+      "performs the exact same function as a speaker",
+      "is used to type text",
+      "displays images"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 39,
+    "question": "A barcode scanner used at a supermarket till is an input device because it __________.",
+    "options": [
+      "displays the total amount owed",
+      "reads and sends product information into the computer system",
+      "prints the receipt",
+      "stores the shop's electricity bill"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 40,
+    "question": "Which statement about input devices is TRUE?",
+    "options": [
+      "All input devices must be connected with wires",
+      "Input devices can be wired or wireless, as long as they send data into the computer",
+      "Input devices only work with laptops",
+      "A monitor is an input device"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 41,
+    "question": "The relationship between input, processing, and output is best described as: __________.",
+    "options": [
+      "output happens before input",
+      "data goes in (input), is processed, and the result comes out (output)",
+      "input and output are the same thing",
+      "processing has nothing to do with output"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 42,
+    "question": "A projector used to display a presentation on a wall in class is classified as an output device because it __________.",
+    "options": [
+      "sends data into the computer",
+      "displays processed information for others to see",
+      "types text",
+      "stores files"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 43,
+    "question": "The MOST suitable output device for a visually impaired student to receive information from a computer is a/an __________.",
+    "options": [
+      "monitor",
+      "Braille display or speech/audio output",
+      "printer",
+      "keyboard"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 44,
+    "question": "A school might buy a printer as well as a monitor mainly because a printer __________.",
+    "options": [
+      "allows the school to keep permanent paper copies of work, unlike a monitor",
+      "is cheaper than a monitor",
+      "can type documents",
+      "displays nothing at all"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 45,
+    "question": "If a computer's speakers are producing sound, this means the computer has already __________ the sound data.",
+    "options": [
+      "deleted",
+      "processed",
+      "never received",
+      "refused"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 46,
+    "question": "A monitor and a set of speakers working together give a computer user both __________ information.",
+    "options": [
+      "visual and audio",
+      "input and storage",
+      "only visual",
+      "only audio"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 47,
+    "question": "Viewing a document on the monitor before printing it is useful mainly because it allows the student to __________.",
+    "options": [
+      "check for mistakes before producing a paper copy",
+      "save electricity",
+      "delete the file automatically",
+      "meet a printer requirement"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 48,
+    "question": "Output devices convert data processed by the computer into a form that __________.",
+    "options": [
+      "only the CPU can understand",
+      "humans can see, hear, or use",
+      "cannot be understood by anyone",
+      "must be typed again"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 49,
+    "question": "A printer is considered an output device, NOT an input device, mainly because it __________.",
+    "options": [
+      "sends processed information out of the computer onto paper",
+      "types documents",
+      "stores information permanently",
+      "clicks on icons"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 50,
+    "question": "Headphones are often preferred over speakers in a shared computer lab mainly because they __________.",
+    "options": [
+      "increase the computer's processing speed",
+      "allow private listening without disturbing others",
+      "are input devices",
+      "store more data"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 51,
+    "question": "Keyboards have both a Backspace key and a Delete key mainly because __________.",
+    "options": [
+      "Backspace removes characters to the left, while Delete removes characters to the right of the cursor",
+      "they do exactly the same thing",
+      "Delete only works with numbers",
+      "Backspace only works in Excel"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 52,
+    "question": "If Caps Lock is turned ON and a user holds the Shift key while typing a letter, the result is usually a __________ letter.",
+    "options": [
+      "lowercase",
+      "capital",
+      "numbered",
+      "deleted"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 53,
+    "question": "The Spacebar is the longest key on a standard keyboard mainly because it __________.",
+    "options": [
+      "is pressed most frequently, to separate words while typing",
+      "is used only once per document",
+      "is purely decorative",
+      "types capital letters"
+    ],
+    "correct": 0,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 54,
+    "question": "The Enter key serves two major functions when typing and using programs. Which pair correctly shows BOTH?",
+    "options": [
+      "Deleting text and saving a file",
+      "Starting a new line and confirming a command or selection",
+      "Typing numbers and printing documents",
+      "Turning the computer on and off"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 55,
+    "question": "A student types their name and it appears in all uppercase letters unintentionally. The MOST likely cause is that __________.",
+    "options": [
+      "the Backspace key is stuck",
+      "Caps Lock is turned on",
+      "the Enter key was pressed too many times",
+      "the mouse was disconnected"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 56,
+    "question": "To type a single capital letter WITHOUT turning on Caps Lock, a user should hold __________ while pressing the letter.",
+    "options": [
+      "Ctrl",
+      "Shift",
+      "Alt",
+      "Tab"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 57,
+    "question": "Number keys and Arrow keys on a keyboard serve different purposes: __________.",
+    "options": [
+      "number keys move the cursor; arrow keys type digits",
+      "number keys type digits; arrow keys move the cursor around the screen",
+      "they both only work in games",
+      "they perform the exact same function"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 58,
+    "question": "If a student accidentally leaves Caps Lock on while typing a paragraph, the best way to fix it going forward is to __________.",
+    "options": [
+      "delete the entire computer's software",
+      "turn off Caps Lock and correct the affected text",
+      "unplug the keyboard permanently",
+      "restart the computer's hard disk"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 59,
+    "question": "Function keys (F1\u2013F12) on a keyboard are mainly used for __________.",
+    "options": [
+      "typing letters of the alphabet",
+      "performing special shortcut tasks, which vary by program",
+      "moving the mouse pointer",
+      "printing documents automatically"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 60,
+    "question": "Touch-typing (typing without looking at the keys) is a valuable skill mainly because it __________.",
+    "options": [
+      "slows down typing speed",
+      "increases speed and accuracy over time through familiarity with key positions",
+      "only works with numbers",
+      "prevents the use of the Shift key"
+    ],
+    "correct": 1,
+    "round": 2,
+    "time_limit": 15
+  },
+  {
+    "id": 61,
+    "question": "Right-clicking on an icon usually produces a __________, which is different from what left-clicking does.",
+    "options": [
+      "shortcut menu with more options",
+      "permanent deletion of the file",
+      "an immediate print command",
+      "a shutdown prompt"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 62,
+    "question": "The purpose of \"drag-and-drop\" using a mouse is to __________.",
+    "options": [
+      "allow a user to move or rearrange items by holding and moving the mouse",
+      "type text automatically",
+      "work only with the keyboard",
+      "delete files permanently"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 63,
+    "question": "A single click and a double click on a mouse usually perform different actions: generally __________.",
+    "options": [
+      "a single click selects an item; a double click typically opens it",
+      "a single click deletes; a double click saves",
+      "both perform the exact same function",
+      "a double click always shuts down the computer"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 64,
+    "question": "The scroll wheel on a mouse is mainly used to __________.",
+    "options": [
+      "type letters",
+      "move up and down a page without using the scroll bar directly",
+      "turn on the computer",
+      "copy files"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 65,
+    "question": "If a wireless mouse suddenly stops responding, the MOST likely first thing to check is __________.",
+    "options": [
+      "the monitor's brightness",
+      "whether its batteries are low or it is properly connected",
+      "the printer's paper tray",
+      "the keyboard's Caps Lock"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 66,
+    "question": "An optical mouse tracks movement using __________ instead of a rolling ball like older mice.",
+    "options": [
+      "a light sensor",
+      "a magnet",
+      "sound waves",
+      "a small fan"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 67,
+    "question": "Holding a mouse gently, rather than gripping it tightly, is recommended mainly because it __________.",
+    "options": [
+      "prevents hand strain and allows for smoother, more controlled movement",
+      "makes the mouse move faster automatically",
+      "changes the color of the pointer",
+      "is required for the mouse to connect to Wi-Fi"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 68,
+    "question": "Clicking and holding the left mouse button while moving an icon, then releasing it, is the action known as __________.",
+    "options": [
+      "booting",
+      "drag-and-drop",
+      "formatting",
+      "scrolling"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 69,
+    "question": "A correct use of a right-click on a computer is to __________.",
+    "options": [
+      "open a shortcut/context menu of options for a selected item",
+      "turn off the computer instantly",
+      "permanently delete a file with no options",
+      "increase the volume of the speakers"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 70,
+    "question": "A graphic designer might prefer a mouse over a touchpad for detailed work mainly because a mouse __________.",
+    "options": [
+      "generally offers more precise and controlled pointer movement",
+      "is always faster at typing",
+      "cannot be used to click",
+      "has no scroll wheel while a touchpad does"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 71,
+    "question": "A computer needs BOTH hardware and software to function mainly because __________.",
+    "options": [
+      "hardware provides the physical parts, while software provides instructions that make the hardware perform useful tasks",
+      "hardware and software are the same thing",
+      "software can work without any hardware",
+      "hardware can think independently without instructions"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 72,
+    "question": "An Operating System is different from an application like MS Word mainly because the Operating System __________.",
+    "options": [
+      "only helps type documents",
+      "manages the computer's overall resources and allows other programs to run",
+      "cannot be installed on a computer",
+      "is a type of hardware"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 73,
+    "question": "Which correctly classifies these two examples: Windows and MS Word?",
+    "options": [
+      "Windows \u2013 System Software; MS Word \u2013 Application Software",
+      "MS Word \u2013 System Software; Windows \u2013 Application Software",
+      "Both are types of hardware",
+      "Neither is real software"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 74,
+    "question": "Antivirus software mainly protects a computer by __________.",
+    "options": [
+      "speeding up the CPU",
+      "detecting, blocking, and removing harmful programs",
+      "printing documents faster",
+      "increasing monitor brightness"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 75,
+    "question": "Installing an Operating System is usually the FIRST step when setting up a new computer mainly because __________.",
+    "options": [
+      "the Operating System manages hardware and allows other software to run",
+      "it prints the first document",
+      "it types the user's name automatically",
+      "it is not actually necessary"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 76,
+    "question": "A word processor and a spreadsheet program are both examples of __________ software, even though they perform different tasks.",
+    "options": [
+      "system",
+      "application",
+      "hardware",
+      "network"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 77,
+    "question": "\"Freeware\" is best distinguished from \"paid\" software by the fact that freeware __________.",
+    "options": [
+      "can be used without payment, while paid software requires purchase or a license",
+      "never works on any computer",
+      "is always a type of hardware",
+      "has no real difference from paid software"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 78,
+    "question": "If a computer's Operating System crashes completely, the MOST likely overall effect is that __________.",
+    "options": [
+      "only the mouse stops working",
+      "the whole computer may become unusable until the issue is fixed",
+      "only the printer is affected",
+      "nothing changes at all"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 79,
+    "question": "Regularly updating software, including antivirus, is important mainly because updates __________.",
+    "options": [
+      "can fix errors and protect against newly discovered security threats",
+      "always slow down the computer permanently",
+      "delete all saved files",
+      "are never actually necessary"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 80,
+    "question": "A web browser is classified as application software because it __________.",
+    "options": [
+      "manages all the computer's hardware directly",
+      "is a program used by the user to perform a specific task \u2014 browsing the internet",
+      "is built into every keyboard",
+      "controls the CPU's cooling fan"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 81,
+    "question": "The key difference between RAM and a hard disk is that __________.",
+    "options": [
+      "RAM stores data temporarily while the computer is on; a hard disk stores data permanently",
+      "RAM stores data permanently; a hard disk loses data when powered off",
+      "they are exactly the same",
+      "neither can store any data"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 82,
+    "question": "If a student is typing an essay and the computer suddenly loses power WITHOUT the file being saved, the MOST likely result is that __________.",
+    "options": [
+      "the essay is saved automatically to the hard disk",
+      "the unsaved essay is lost because it was only held in RAM",
+      "the essay prints automatically",
+      "the essay is emailed automatically"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 83,
+    "question": "Which of these correctly ranks typical storage capacity from SMALLEST to LARGEST?",
+    "options": [
+      "Hard Disk, Flash Drive, Floppy Disk",
+      "Floppy Disk, Flash Drive, Hard Disk",
+      "Hard Disk, Floppy Disk, Flash Drive",
+      "Flash Drive, Hard Disk, Floppy Disk"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 84,
+    "question": "The floppy disk has become almost obsolete compared to modern storage devices mainly because it __________.",
+    "options": [
+      "can store far more data than a flash drive",
+      "has very limited storage capacity and is fragile compared to modern options",
+      "never worked in any computer",
+      "is louder than a CD"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 85,
+    "question": "ROM is different from RAM mainly because ROM __________.",
+    "options": [
+      "loses its data when the computer is switched off",
+      "usually holds permanent instructions that are not easily changed and are not lost when powered off",
+      "is used only for typing documents",
+      "is a type of printer"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 86,
+    "question": "Primary storage (like RAM) and secondary storage (like a hard disk) are BOTH necessary mainly because __________.",
+    "options": [
+      "primary storage handles data currently in use for fast processing, while secondary storage keeps data permanently",
+      "they perform the exact same function",
+      "secondary storage is faster than RAM",
+      "primary storage never loses data"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 87,
+    "question": "A memory card used in a digital camera is an example of __________ storage, since it can be removed and used in other devices.",
+    "options": [
+      "internal, non-removable",
+      "external, removable",
+      "processing",
+      "power"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 88,
+    "question": "Cloud storage, such as Google Drive, differs from a flash drive mainly because cloud storage __________.",
+    "options": [
+      "is a physical device you must carry around",
+      "allows files to be saved and accessed remotely over the internet, without carrying a physical device",
+      "cannot store any files",
+      "only works without internet access"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 89,
+    "question": "A good reason to use an external storage device is to __________.",
+    "options": [
+      "delete all files instead of saving them",
+      "back up important files in case the computer's hard disk fails",
+      "make files load slower",
+      "prevent files from ever being opened"
+    ],
+    "correct": 1,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 90,
+    "question": "It is important to safely eject a flash drive before removing it from a computer mainly to __________.",
+    "options": [
+      "prevent data corruption or loss from an incomplete file transfer",
+      "make the flash drive charge faster",
+      "turn off the computer automatically",
+      "avoid an unnecessary step, since it has no real effect"
+    ],
+    "correct": 0,
+    "round": 3,
+    "time_limit": 15
+  },
+  {
+    "id": 91,
+    "question": "The relationship between the Internet and the World Wide Web (WWW) is that __________.",
+    "options": [
+      "they are exactly the same thing with no difference",
+      "the Internet is the physical network connecting computers, while the WWW is a system of linked web pages accessed through it",
+      "the WWW existed before the Internet",
+      "the Internet only works without the WWW"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 92,
+    "question": "A search engine like Google helps users mainly by __________.",
+    "options": [
+      "creating new websites automatically",
+      "finding relevant information or websites based on typed keywords",
+      "printing documents",
+      "sending emails only"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 93,
+    "question": "A URL is best understood as __________.",
+    "options": [
+      "a password used to log into a computer",
+      "the unique address used to locate a specific resource or page on the internet",
+      "a type of computer virus",
+      "an email attachment"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 94,
+    "question": "A school might use Wi-Fi instead of wired connections mainly because Wi-Fi __________.",
+    "options": [
+      "allows wireless, flexible access without needing cables to every device",
+      "cannot connect more than one device",
+      "works without any electricity",
+      "is always slower than any wired connection"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 95,
+    "question": "The BEST example of using the internet for communication rather than research is __________.",
+    "options": [
+      "reading a Wikipedia article",
+      "sending an email to a friend",
+      "watching a downloaded video with no internet needed",
+      "typing an essay in a word processor"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 96,
+    "question": "A \".gov\" domain at the end of a website address usually indicates that the website belongs to a __________.",
+    "options": [
+      "private business",
+      "government organization",
+      "school only",
+      "random individual"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 97,
+    "question": "Typing the exact correct URL is important mainly because __________.",
+    "options": [
+      "a single incorrect character can lead to an entirely different or unintended website",
+      "URLs never need to be exact",
+      "all URLs lead to the same website",
+      "URLs are not used by web browsers"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 98,
+    "question": "Downloading a file from an unfamiliar or suspicious website can be risky because it may __________.",
+    "options": [
+      "automatically improve your computer's speed",
+      "contain viruses or malicious software",
+      "always be completely safe",
+      "delete the internet automatically"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 99,
+    "question": "A web browser is best distinguished from a search engine in that __________.",
+    "options": [
+      "a browser is software used to access websites; a search engine is a tool used to find information",
+      "they are the exact same thing",
+      "a search engine is installed like software while a browser is a website",
+      "a browser can only open one type of website"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 100,
+    "question": "Having multiple web browsers available, such as Chrome, Firefox, and Edge, is useful mainly because __________.",
+    "options": [
+      "only one browser can ever connect to the internet",
+      "users can choose based on speed, features, or compatibility with certain websites",
+      "browsers cannot open the same websites",
+      "using more than one browser is not allowed"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 101,
+    "question": "\"Save As\" is different from simply clicking \"Save\" mainly because \"Save As\" __________.",
+    "options": [
+      "lets you create a new file or change its name/location, while Save updates the current file",
+      "performs the exact same function as Save, always",
+      "permanently deletes the original file",
+      "only works once per document"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 102,
+    "question": "If a student wants specific words to stand out for emphasis without changing the letter shape, the BEST formatting tool is __________.",
+    "options": [
+      "Italic",
+      "Bold",
+      "changing only the font color",
+      "deleting the words"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 103,
+    "question": "The purpose of \"Undo\" (Ctrl + Z) in a word processor is to __________.",
+    "options": [
+      "permanently delete the document",
+      "reverse the most recent action or change made",
+      "save the document",
+      "print the document"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 104,
+    "question": "To make sure a document looks the same when printed as it does on screen, a student should check __________ before printing.",
+    "options": [
+      "Spell check",
+      "Print Preview",
+      "Bold text",
+      "Font color"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 105,
+    "question": "Using headings and paragraphs properly makes a document easier to read mainly because they __________.",
+    "options": [
+      "organize information logically, guiding the reader through the content",
+      "make the document load more slowly",
+      "are purely decorative and serve no purpose",
+      "automatically fix spelling errors"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 106,
+    "question": "If a student copies a paragraph using Ctrl+C but nothing happens when pasting, the MOST likely reason is that __________.",
+    "options": [
+      "the paragraph was never actually copied/selected correctly first",
+      "Ctrl+V is the wrong shortcut for pasting",
+      "word processors cannot paste text at all",
+      "the computer has no keyboard"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 107,
+    "question": "The correct order of steps to format a title as bold, centered, and larger in size is to __________.",
+    "options": [
+      "type the title, then select it, then apply bold, centering, and font size changes",
+      "apply formatting before typing anything at all",
+      "leave formatting unchanged, since it cannot be edited after typing",
+      "change only the font size, since other formats cannot be combined"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 108,
+    "question": "A teacher might ask students to use spell-check before submitting a typed assignment mainly because it __________.",
+    "options": [
+      "helps identify and correct possible spelling errors before printing or submitting",
+      "deletes the whole document automatically",
+      "changes the document's language without warning",
+      "has no real benefit to the student"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 109,
+    "question": "The \"Ribbon\" in MS Word groups tools into different tabs, such as Home, Insert, and Layout, mainly to __________.",
+    "options": [
+      "hide all tools so they cannot be used",
+      "help users quickly find related tools/commands based on category",
+      "prevent users from typing",
+      "automatically save documents"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 110,
+    "question": "A document's title bar is related to its file name because __________.",
+    "options": [
+      "the title bar usually displays the current file name of the open document",
+      "they are completely unrelated",
+      "the title bar shows the printer's name instead",
+      "the file name automatically changes the font"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 111,
+    "question": "Formulas in Excel must start with an equal sign (=) mainly because it __________.",
+    "options": [
+      "tells Excel that what follows is a calculation, not just text",
+      "is only a decorative symbol",
+      "deletes the cell's content",
+      "is unrelated to calculations"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 112,
+    "question": "If cell A1 contains 10 and cell A2 contains 5, the formula that correctly adds them together is __________.",
+    "options": [
+      "=A1+A2",
+      "A1+A2",
+      "SUM(A1,A2)",
+      "+10+5="
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 113,
+    "question": "Spreadsheets are particularly useful for tasks like keeping a class attendance register or scoring records mainly because they allow __________.",
+    "options": [
+      "organized data entry, quick calculations, and easy updates",
+      "only images to be displayed",
+      "no calculations to be performed",
+      "typing of essays only"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 114,
+    "question": "A chart or graph created from spreadsheet data is mainly useful because it can __________.",
+    "options": [
+      "visually represent data, making trends and comparisons easier to understand",
+      "permanently delete the underlying data",
+      "replace the need for any numbers",
+      "slow down calculations"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 115,
+    "question": "A student wants the total score of 5 subjects entered in cells B2 to B6. The most efficient formula is __________.",
+    "options": [
+      "=SUM(B2:B6)",
+      "=B2-B6",
+      "=AVERAGE(B2)",
+      "=TOTAL(B2/B6)"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 116,
+    "question": "Each cell in a spreadsheet has a unique reference, like \"C5,\" mainly because this __________.",
+    "options": [
+      "allows formulas and functions to refer to exact locations for accurate calculations",
+      "is purely for decoration",
+      "means all cells actually share the same reference",
+      "shows that references are not used in spreadsheets"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 117,
+    "question": "If a spreadsheet cell shows an error message after a formula is entered, this MOST likely indicates that __________.",
+    "options": [
+      "the formula was entered correctly",
+      "there is a problem with how the formula or data was entered",
+      "the cell is empty on purpose",
+      "the computer has no power"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 118,
+    "question": "The AVERAGE function in a spreadsheet is best described as a function that __________.",
+    "options": [
+      "adds all selected numbers together only",
+      "calculates the mean (typical value) of a selected range of numbers",
+      "deletes selected numbers",
+      "sorts numbers from smallest to largest"
+    ],
+    "correct": 1,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 119,
+    "question": "A shop owner might use a spreadsheet to track daily sales instead of writing them in a notebook mainly because a spreadsheet can __________.",
+    "options": [
+      "automatically calculate totals and help spot patterns more easily",
+      "not store any numbers at all",
+      "calculate totals only if written by hand first",
+      "offer no real advantage over a notebook"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 120,
+    "question": "Understanding rows, columns, and cells is essential before using spreadsheet formulas mainly because formulas __________.",
+    "options": [
+      "rely on correctly referencing specific cells within the row-and-column grid",
+      "are not related to rows and columns at all",
+      "work the same with or without cell references",
+      "cannot be used in spreadsheets that have rows and columns"
+    ],
+    "correct": 0,
+    "round": 4,
+    "time_limit": 10
+  },
+  {
+    "id": 121,
+    "question": "Food and drinks are banned in a computer laboratory mainly because __________.",
+    "options": [
+      "spills could damage sensitive electronic components and cause permanent faults",
+      "food makes the computer faster",
+      "it is only a matter of tidiness, not damage",
+      "there is no real safety reason"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 122,
+    "question": "If a computer is not properly shut down before the power is suddenly cut, the main risk is that this could __________.",
+    "options": [
+      "always make the computer faster next time",
+      "corrupt system files or cause loss of unsaved work",
+      "automatically save all open files",
+      "have no effect at all"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 123,
+    "question": "A UPS (Uninterruptible Power Supply) is valuable in areas with unstable electricity mainly because it __________.",
+    "options": [
+      "gives users a short time to save work and shut down safely during a power outage",
+      "permanently stores files instead of a hard disk",
+      "prevents the need for electricity altogether",
+      "is used only to print documents"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 124,
+    "question": "Computer cables should be arranged neatly and out of walking paths mainly to __________.",
+    "options": [
+      "prevent people from tripping and to avoid damaging the cables",
+      "make the room look empty",
+      "reflect the fact that cables have no real safety risk",
+      "have no effect on safety at all"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 125,
+    "question": "The SAFEST way to clean a dusty monitor screen is to __________.",
+    "options": [
+      "spray water directly onto the screen",
+      "wipe gently with a soft, dry microfiber cloth",
+      "scrub hard with a wet sponge",
+      "use a sharp object to scrape the dust"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 126,
+    "question": "Running or playing roughly in a computer lab is discouraged mainly because it __________.",
+    "options": [
+      "could cause accidents and damage to expensive, sensitive equipment",
+      "makes the computers charge faster",
+      "has no real consequences",
+      "is required for exercise during lessons"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 127,
+    "question": "If dust accumulates inside a computer's system unit over a long time, the MOST likely consequence is that it can __________.",
+    "options": [
+      "make the computer cooler and work better",
+      "cause overheating and reduce performance or damage components",
+      "automatically clean itself",
+      "have no effect on the computer at all"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 128,
+    "question": "Students should avoid touching computer parts with wet or oily hands mainly because moisture and oil can __________.",
+    "options": [
+      "damage sensitive electronic components or cause short circuits",
+      "make typing faster",
+      "pose no real risk at all",
+      "improve the mouse's sensitivity"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 129,
+    "question": "Regularly updating and maintaining computer hardware and software in a school lab is important mainly to __________.",
+    "options": [
+      "keep the systems running safely, securely, and efficiently for all users",
+      "make the computers heavier",
+      "reduce the number of students who can use them",
+      "provide no real benefit"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 130,
+    "question": "Students are often required to sit an appropriate distance from the monitor, rather than very close, mainly because __________.",
+    "options": [
+      "sitting too close for long periods can cause eye strain and discomfort over time",
+      "sitting close makes the monitor brighter",
+      "distance has no effect on health",
+      "sitting close slows down the computer"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 131,
+    "question": "Which of these is generally considered the STRONGEST password?",
+    "options": [
+      "123456",
+      "yourname",
+      "Bl6e#Sky92!",
+      "password"
+    ],
+    "correct": 2,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 132,
+    "question": "Using the same password for multiple different online accounts is risky mainly because __________.",
+    "options": [
+      "if one account is hacked, all other accounts using that password could also become vulnerable",
+      "it has no real risk at all",
+      "it makes accounts more secure",
+      "passwords cannot be reused anyway"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 133,
+    "question": "If a stranger online asks a child for their home address or school name, the BEST response is to __________.",
+    "options": [
+      "share the information politely",
+      "refuse to share it and tell a trusted adult",
+      "share it only if the stranger seems friendly",
+      "ask the stranger for their address too"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 134,
+    "question": "\"Phishing\" in the context of internet safety is best defined as __________.",
+    "options": [
+      "a fun online game",
+      "a trick used by criminals to steal personal information through fake messages or links",
+      "a type of antivirus software",
+      "a safe way to browse the internet"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 135,
+    "question": "It is important to think carefully before posting personal photos or information online mainly because __________.",
+    "options": [
+      "once shared, content can be difficult to fully remove and may be seen by unintended people",
+      "nothing posted online can ever be seen by others",
+      "posting online has no lasting effect",
+      "online posts automatically delete themselves after a day"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 136,
+    "question": "The CLEAREST example of cyberbullying among these is __________.",
+    "options": [
+      "a classmate helping another student with homework online",
+      "repeatedly sending mean or threatening messages to someone online",
+      "sending a birthday greeting",
+      "sharing a funny, harmless video with a friend"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 137,
+    "question": "A website with lots of spelling errors, strange pop-ups, or requests for personal details is often considered suspicious mainly because __________.",
+    "options": [
+      "these are common warning signs of an unsafe or untrustworthy website",
+      "these features always indicate a completely safe website",
+      "spelling errors mean a website is more secure",
+      "pop-ups always come from trusted government websites"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 138,
+    "question": "A \"digital footprint\" refers to __________.",
+    "options": [
+      "a physical footprint left on a computer keyboard",
+      "the trail of data and activity a person leaves behind while using the internet",
+      "a type of computer virus",
+      "the size of a computer's hard disk"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 139,
+    "question": "If a child accidentally clicks a suspicious link that starts downloading something unexpected, the BEST first step is to __________.",
+    "options": [
+      "continue browsing normally",
+      "stop, avoid opening the download, and tell a trusted adult immediately",
+      "share the link with friends",
+      "restart the download to see what happens"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 140,
+    "question": "Many websites and apps require a minimum age to create an account mainly to __________.",
+    "options": [
+      "help protect children from content or interactions that may not be appropriate for their age",
+      "show that age has no relation to online safety",
+      "follow a random rule with no real purpose",
+      "prevent all internet use by anyone"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 141,
+    "question": "Artificial Intelligence (AI) differs from a simple calculator mainly because AI can __________.",
+    "options": [
+      "only add and subtract numbers",
+      "learn patterns and make decisions based on data, beyond fixed calculations",
+      "never process any information",
+      "only work without electricity"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 142,
+    "question": "A LAN (Local Area Network) is best described as a network that connects computers __________.",
+    "options": [
+      "across different countries",
+      "within a small area, such as a single school or office building",
+      "using only satellites",
+      "with no computers involved at all"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 143,
+    "question": "The relationship between the Internet and a WAN (Wide Area Network) is that __________.",
+    "options": [
+      "the Internet is an example of a very large WAN connecting networks worldwide",
+      "a WAN is smaller than a single computer",
+      "the Internet only works within one building",
+      "a WAN and a LAN are exactly the same thing"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 144,
+    "question": "In block-based coding platforms like Scratch, \"loop\" blocks are useful mainly because they __________.",
+    "options": [
+      "allow an action to repeat automatically without rewriting the same blocks multiple times",
+      "stop all code from running",
+      "are purely decorative",
+      "delete sprites from the stage"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 145,
+    "question": "\"Debugging\" in programming is best described as __________.",
+    "options": [
+      "writing new code from scratch every time",
+      "finding and correcting errors so a program works as intended",
+      "deleting a program completely",
+      "printing the program's code on paper"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 146,
+    "question": "A \"conditional\" (if-then) block in coding is used to __________.",
+    "options": [
+      "repeat an action forever with no condition",
+      "make a decision and trigger an action only when a certain condition is true",
+      "delete a sprite automatically",
+      "always run every block regardless of conditions"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 147,
+    "question": "An algorithm should be written in a clear, logical, step-by-step order mainly so that __________.",
+    "options": [
+      "whoever follows it, human or computer, can achieve the correct result without confusion",
+      "order does not matter in an algorithm",
+      "algorithms are always random",
+      "only the last step of an algorithm matters"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 148,
+    "question": "Cloud computing services, such as Google Drive, mainly benefit users by allowing them to __________.",
+    "options": [
+      "store and access files from anywhere with an internet connection",
+      "permanently delete their files automatically",
+      "avoid needing the internet at all",
+      "only store files on one specific device"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 149,
+    "question": "A \"variable\" is best distinguished from a \"constant\" in programming by the fact that __________.",
+    "options": [
+      "a variable's value can change during a program, while a constant's value stays fixed",
+      "they are exactly the same",
+      "a constant can change while a variable cannot",
+      "neither can hold any value"
+    ],
+    "correct": 0,
+    "round": 5,
+    "time_limit": 10
+  },
+  {
+    "id": 150,
+    "question": "Voice assistants like Siri or Alexa use AI mainly to __________.",
+    "options": [
+      "permanently store users' voices without processing them",
+      "understand spoken language and respond appropriately to requests",
+      "only work when a request is typed",
+      "function without any programming at all"
+    ],
+    "correct": 1,
+    "round": 5,
+    "time_limit": 10
+  }
+]

@@ -1,0 +1,126 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: #f4f4f4; }
+
+body {
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    border-bottom: 3px solid #cc0000;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.logo {
+    max-height: 60px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #cc0000;
+    font-size: 1.8rem;
+}
+
+.btn-red {
+    background: #cc0000;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 5px;
+}
+
+.btn-red:hover {
+    background: #990000;
+}
+.btn-red:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f8f8;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#timer-display {
+    color: #cc0000;
+    font-size: 1.3rem;
+}
+
+#question-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+#options-container label {
+    display: block;
+    background: #f0f0f0;
+    padding: 12px 15px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#options-container label:hover {
+    background: #e0e0e0;
+}
+
+#options-container input[type="radio"] {
+    margin-right: 12px;
+    accent-color: #cc0000;
+}
+
+#options-container label.selected {
+    border-left-color: #cc0000;
+    background: #ffe6e6;
+}
+
+#next-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#result-screen {
+    text-align: center;
+}
+
+#result-link {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+#copy-btn {
+    padding: 10px 25px;
+}
