@@ -5,138 +5,225 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📺 Quiz Projector</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #1a1a1a;
+        /* ---------- RESET & FULLSCREEN ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;  /* no scrollbars */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background: #1a1a1a;
             color: white;
         }
+
+        /* ---------- CONTAINER FILLS SCREEN ---------- */
         .projector-container {
-            max-width: 1200px;
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
             background: #2d2d2d;
-            border-radius: 24px;
-            padding: 50px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            padding: 2vh 3vw;
             border-top: 8px solid #cc0000;
+            box-sizing: border-box;
         }
+
+        /* ---------- HEADER (fixed height) ---------- */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #cc0000;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding-bottom: 1vh;
+            margin-bottom: 1.5vh;
+            flex-shrink: 0;
         }
-        .header h1 { color: #cc0000; font-size: 2.5rem; font-weight: 700; }
+        .header h1 {
+            color: #cc0000;
+            font-size: clamp(1.8rem, 4vh, 3.5rem);
+            font-weight: 700;
+        }
         .round-badge {
             background: #cc0000;
-            padding: 12px 30px;
+            padding: 0.8vh 2.5vw;
             border-radius: 50px;
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vh, 2.2rem);
             font-weight: bold;
         }
+        .refresh-btn {
+            background: #cc0000;
+            color: white;
+            border: none;
+            padding: 0.8vh 1.5vw;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 2vh, 1.4rem);
+        }
+
+        /* ---------- QUESTION AREA (takes remaining space) ---------- */
         .question-area {
+            flex: 1;
             background: #3a3a3a;
             border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 30px;
-            min-height: 200px;
+            padding: 2vh 2vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 0; /* flex override */
+            overflow: hidden;
         }
-        .question-text { font-size: 2.8rem; line-height: 1.5; margin-bottom: 30px; font-weight: 500; }
+
+        .question-text {
+            font-size: clamp(1.8rem, 4.5vh, 3.8rem);
+            line-height: 1.4;
+            font-weight: 500;
+            margin-bottom: 1.5vh;
+            flex-shrink: 0;
+        }
+
+        /* ---------- OPTIONS GRID (2 columns) ---------- */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 1.2vh 2vw;
+            flex-shrink: 0;
         }
         .option-item {
             background: #4a4a4a;
-            padding: 20px 25px;
+            padding: 1.2vh 1.2vw;
             border-radius: 12px;
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 2.8vh, 2.2rem);
             border-left: 8px solid #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .option-item .letter { font-weight: bold; color: #cc0000; margin-right: 15px; }
+        .option-item .letter {
+            font-weight: bold;
+            color: #cc0000;
+            margin-right: 15px;
+        }
+
+        /* ---------- CURRENT SCHOOL (pulsing) ---------- */
         .current-school {
             background: #cc0000;
-            padding: 15px 30px;
+            padding: 0.8vh 2vw;
             border-radius: 12px;
             display: inline-block;
-            font-size: 2.2rem;
+            font-size: clamp(1.4rem, 3.2vh, 2.6rem);
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 1.5vh;
+            flex-shrink: 0;
             animation: pulse 1.5s infinite;
+            align-self: flex-start;
         }
         @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.6; }
             100% { opacity: 1; }
         }
+        .status-dead {
+            color: #ff6b6b;
+            font-size: clamp(1.6rem, 3.5vh, 2.8rem);
+            font-weight: bold;
+            margin-top: 1.5vh;
+            flex-shrink: 0;
+        }
+
+        /* ---------- SCORES (bottom section, fixed height) ---------- */
         .scores-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-            padding-top: 20px;
+            gap: 1vh 1.5vw;
+            margin-top: 1.5vh;
+            padding-top: 1.5vh;
             border-top: 2px solid #444;
+            flex-shrink: 0;
+            min-height: 7vh;
+            align-items: center;
         }
         .score-chip {
             background: #3a3a3a;
-            padding: 12px 25px;
+            padding: 0.6vh 1.2vw;
             border-radius: 50px;
-            font-size: 1.4rem;
+            font-size: clamp(0.9rem, 2.2vh, 1.6rem);
             border: 2px solid transparent;
+            white-space: nowrap;
         }
-        .score-chip.active-school { border-color: #cc0000; background: #4a1a1a; }
-        .score-chip .pts { font-weight: bold; color: #ffc107; margin-left: 10px; }
-        .status-dead { color: #ff6b6b; font-size: 2rem; font-weight: bold; margin-top: 15px; }
-        .refresh-btn {
-            background: #cc0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
+        .score-chip.active-school {
+            border-color: #cc0000;
+            background: #4a1a1a;
         }
-        .footer { margin-top: 30px; text-align: center; color: #888; font-size: 1rem; }
-        .debug-info { color: #666; font-size: 0.8rem; margin-top: 10px; text-align: center; }
+        .score-chip .pts {
+            font-weight: bold;
+            color: #ffc107;
+            margin-left: 8px;
+        }
+
+        /* ---------- FOOTER (tiny) ---------- */
+        .footer {
+            margin-top: 0.8vh;
+            text-align: center;
+            color: #666;
+            font-size: clamp(0.6rem, 1.2vh, 0.9rem);
+            flex-shrink: 0;
+        }
+        .debug-info {
+            color: #444;
+            font-size: clamp(0.5rem, 1vh, 0.8rem);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* ---------- RESPONSIVE TWEAKS ---------- */
         @media (max-width: 768px) {
-            .projector-container { padding: 20px; }
-            .question-text { font-size: 2rem; }
-            .options-grid { grid-template-columns: 1fr; }
-            .option-item { font-size: 1.5rem; }
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8vh;
+            }
+            .option-item {
+                white-space: normal;
+                font-size: clamp(1rem, 2.2vh, 1.4rem);
+                padding: 0.8vh 1.5vw;
+            }
+            .header h1 { font-size: clamp(1.2rem, 3vh, 1.8rem); }
+            .round-badge { font-size: clamp(0.9rem, 2vh, 1.4rem); padding: 0.5vh 2vw; }
         }
     </style>
 </head>
 <body>
 <div class="projector-container">
+    <!-- HEADER -->
     <div class="header">
-        <h1>🏆 Megatek ICT Quiz</h1>
+        <h1>Megatek ICT Quiz</h1>
         <div style="display:flex; gap:15px; align-items:center;">
             <button onclick="fetchState()" class="refresh-btn">🔄 Refresh</button>
             <div class="round-badge" id="roundName">Waiting...</div>
         </div>
     </div>
 
+    <!-- QUESTION AREA -->
     <div class="question-area">
         <div class="question-text" id="questionText">Load a question to begin</div>
         <div class="options-grid" id="optionsContainer">
-            <div style="grid-column:span 2; text-align:center; color:#888; font-size:1.5rem;">No options loaded</div>
+            <div style="grid-column:span 2; text-align:center; color:#888; font-size:clamp(1rem, 2.5vh, 1.8rem);">No options loaded</div>
         </div>
         <div id="turnIndicator">
             <div class="current-school" id="currentSchool">No turn</div>
         </div>
-        <div id="deadIndicator" style="display:none;" class="status-dead">💀 QUESTION DEAD</div>
+        <div id="deadIndicator" style="display:none;" class="status-dead">QUESTION GONE</div>
     </div>
 
+    <!-- SCORES -->
     <div class="scores-container" id="scoresContainer">
-        <div style="color:#888; font-size:1.2rem;">No schools in this round</div>
+        <div style="color:#888; font-size:clamp(0.8rem, 1.8vh, 1.2rem);">No schools in this round</div>
     </div>
+
+    <!-- FOOTER -->
     <div class="footer">📡 Live feed • Auto‑updates every 2 seconds</div>
     <div class="debug-info" id="debugInfo">Last updated: N/A</div>
 </div>
@@ -148,19 +235,17 @@
         try {
             const res = await fetch('/api/state');
             const state = await res.json();
-            
-            // Check if state actually changed
             const stateStr = JSON.stringify(state);
             if (stateStr === lastState) return;
             lastState = stateStr;
 
-            // Update round
+            // Round
             document.getElementById('roundName').textContent = state.round_name || 'No Round';
 
-            // Update question
+            // Question
             document.getElementById('questionText').textContent = state.question_text || 'No question loaded';
 
-            // Update options
+            // Options
             const optionsContainer = document.getElementById('optionsContainer');
             const letters = ['A', 'B', 'C', 'D'];
             if (state.options && state.options.length) {
@@ -170,10 +255,10 @@
                 });
                 optionsContainer.innerHTML = html;
             } else {
-                optionsContainer.innerHTML = '<div style="grid-column:span 2; text-align:center; color:#888; font-size:1.5rem;">No options loaded</div>';
+                optionsContainer.innerHTML = '<div style="grid-column:span 2; text-align:center; color:#888; font-size:clamp(1rem, 2.5vh, 1.8rem);">No options loaded</div>';
             }
 
-            // Update current school
+            // Turn / Dead
             const turnEl = document.getElementById('currentSchool');
             const deadEl = document.getElementById('deadIndicator');
             if (state.is_dead) {
@@ -181,7 +266,7 @@
                 turnEl.style.display = 'none';
             } else if (state.current_school) {
                 deadEl.style.display = 'none';
-                turnEl.textContent = `🎯 ${state.current_school.name} (Turn)`;
+                turnEl.textContent = ` ${state.current_school.name} (Turn)`;
                 turnEl.style.display = 'inline-block';
             } else {
                 deadEl.style.display = 'none';
@@ -189,7 +274,7 @@
                 turnEl.style.display = 'inline-block';
             }
 
-            // Update scores
+            // Scores
             const scoresContainer = document.getElementById('scoresContainer');
             if (state.schools && state.schools.length) {
                 let html = '';
@@ -197,12 +282,12 @@
                     const pts = state.scores[school.id] || 0;
                     const isActive = (state.current_school && state.current_school.id === school.id && !state.is_dead);
                     html += `<div class="score-chip ${isActive ? 'active-school' : ''}">
-                        ${school.name} <span class="pts">${pts} pts</span>
+                        ${school.name} <span class="pts">${pts}</span>
                     </div>`;
                 });
                 scoresContainer.innerHTML = html;
             } else {
-                scoresContainer.innerHTML = '<div style="color:#888; font-size:1.2rem;">No schools in this round</div>';
+                scoresContainer.innerHTML = '<div style="color:#888; font-size:clamp(0.8rem, 1.8vh, 1.2rem);">No schools in this round</div>';
             }
 
             document.getElementById('debugInfo').textContent = `Last updated: ${state.timestamp || 'N/A'}`;
@@ -212,7 +297,6 @@
         }
     }
 
-    // Poll every 2 seconds
     fetchState();
     setInterval(fetchState, 2000);
 </script>
