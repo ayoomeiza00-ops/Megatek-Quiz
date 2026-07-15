@@ -123,6 +123,10 @@ def serve_admin_alt():
 def serve_projector():
     return app.send_static_file('projector.html')
 
+@app.route('/projector-simple')
+def serve_projector_simple():
+    return app.send_static_file('projector-simple.html')
+
 @app.route('/boss')
 def serve_boss():
     return app.send_static_file('boss.html')
@@ -329,7 +333,6 @@ def reset_database():
 # ---------- Init DB ----------
 def init_db():
     if School.query.count() == 0:
-        # 14 SCHOOLS (updated list)
         school_names = [
             "Methodist Primary School, Gberigbe",
             "Ayangbure Primary School, Ikorodu",
@@ -350,7 +353,6 @@ def init_db():
             db.session.add(School(name=name))
         db.session.commit()
 
-        # ROUNDS: 1-5 for R1, 6-10 for R2, 11-14 for R3
         rounds_config = [
             ("Round 1", [1,2,3,4,5]),
             ("Round 2", [6,7,8,9,10]),
