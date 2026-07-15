@@ -6,7 +6,6 @@
     <title>Megatek Quiz - Admin</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        /* same as before */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f4f4f4; padding: 20px; }
         .admin-container { max-width: 1200px; margin: 0 auto; }
@@ -50,6 +49,8 @@
             .btn-group { flex-direction: column; }
             .btn-group .btn { width: 100%; }
         }
+        .pass-btn { background: #ffc107; color: #333; }
+        .pass-btn:hover { background: #e0a800; }
     </style>
 </head>
 <body>
@@ -112,6 +113,8 @@
                 <button id="score0Btn" class="btn btn-secondary" disabled>0 Skip</button>
                 <button id="scoreNeg2Btn" class="btn btn-danger" disabled>-2 Penalty</button>
                 <button id="scoreNeg5Btn" class="btn btn-danger" disabled style="background:#8B0000;">-5 Major</button>
+                <!-- NEW PASS BUTTON -->
+                <button id="passBtn" class="btn pass-btn" disabled>➡️ Pass / Wrong</button>
                 <button id="resetTurnBtn" class="btn btn-secondary">↺ Reset Turn</button>
                 <button id="deadBtn" class="btn btn-danger">💀 Dead</button>
                 <button id="resetRoundBtn" class="btn btn-danger" style="background:#6c757d;">🗑️ Reset Round</button>
@@ -157,6 +160,7 @@
     const score0Btn = document.getElementById('score0Btn');
     const scoreNeg2Btn = document.getElementById('scoreNeg2Btn');
     const scoreNeg5Btn = document.getElementById('scoreNeg5Btn');
+    const passBtn = document.getElementById('passBtn');
     const resetTurnBtn = document.getElementById('resetTurnBtn');
     const deadBtn = document.getElementById('deadBtn');
     const resetRoundBtn = document.getElementById('resetRoundBtn');
@@ -274,13 +278,14 @@
         renderSchools();
         updateTurn();
         enableButtons(true);
+        // Enable pass button initially
+        passBtn.disabled = false;
         score5Btn.disabled = false;
         score2Btn.disabled = true;
         score0Btn.disabled = false;
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
         await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
-        // Timer RESET but NOT auto-start – user must click Start
         await fetch('/api/timer/reset', { method: 'POST' });
         updateTimerDisplay();
     });
@@ -336,6 +341,7 @@
                     currentTurnIndex = idx;
                     renderSchools();
                     updateTurn();
+                    enableButtons(true);
                     updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
                 }
             });
@@ -366,12 +372,14 @@
         score0Btn.disabled = !state;
         scoreNeg2Btn.disabled = !state;
         scoreNeg5Btn.disabled = !state;
+        passBtn.disabled = !state;
         if (!state) {
             score5Btn.disabled = true;
             score2Btn.disabled = true;
             score0Btn.disabled = true;
             scoreNeg2Btn.disabled = true;
             scoreNeg5Btn.disabled = true;
+            passBtn.disabled = true;
         }
     }
 
@@ -420,6 +428,51 @@
     scoreNeg2Btn.addEventListener('click', () => awardPoints(-2, 'penalty'));
     scoreNeg5Btn.addEventListener('click', () => awardPoints(-5, 'major'));
 
+    // ---------- Pass / Wrong Button ----------
+    passBtn.addEventListener('click', async function() {
+        if (questionAnswered || questionDead || !currentRoundSchools.length) return;
+        // Move to next school
+        if (currentTurnIndex < currentRoundSchools.length - 1) {
+            currentTurnIndex++;
+            renderSchools();
+            updateTurn();
+            enableButtons(true);
+            // After passing, +5 disabled, +2 enabled (reboundState)
+            score5Btn.disabled = true;
+            score2Btn.disabled = false;
+            // Pass button remains enabled for further passes
+            passBtn.disabled = false;
+            updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
+        } else {
+            // All schools have passed – question is dead
+            questionDead = true;
+            questionAnswered = true;  // prevents further scoring
+            enableButtons(false);
+            currentTurnText.textContent = '💀 All passed – Question Dead';
+            turnStatus.textContent = '💀 Dead';
+            turnStatus.style.color = '#dc3545';
+            // Mark as dead in DB (record 0 points)
+            await fetch('/api/score', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    round_id: currentRoundId,
+                    school_id: 0,
+                    question_id: currentQuestionId,
+                    points: 0,
+                    type: 'dead',
+                    current_q_id: currentQuestionId,
+                    turn_index: currentTurnIndex,
+                    is_dead: true
+                })
+            });
+            updateQuestionCount(currentRoundId);
+            await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, true);
+            await fetch('/api/timer/stop', { method: 'POST' });
+            updateTimerDisplay();
+        }
+    });
+
     // ---------- Reset Turn ----------
     resetTurnBtn.addEventListener('click', function() {
         if (questionAnswered || questionDead) {
@@ -437,6 +490,7 @@
         score0Btn.disabled = false;
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
+        passBtn.disabled = false;
         updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
         fetch('/api/timer/reset', { method: 'POST' });
         updateTimerDisplay();
