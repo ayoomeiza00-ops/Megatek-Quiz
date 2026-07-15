@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>📺 Quiz Projector</title>
     <style>
+        /* ---------- FULLSCREEN RESET ---------- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { width: 100vw; height: 100vh; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a1a; color: white; }
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;  /* BLACK BACKGROUND */
+            color: #fff;       /* WHITE TEXT */
+        }
+
         .projector-container {
             width: 100vw;
             height: 100vh;
-            background: #2d2d2d;
+            background: #000;  /* BLACK CONTAINER */
             display: flex;
             flex-direction: column;
             padding: 1.5vh 2vw;
@@ -18,6 +27,8 @@
             box-sizing: border-box;
             overflow: hidden;
         }
+
+        /* ---------- HEADER ---------- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -28,11 +39,41 @@
             flex-shrink: 0;
             height: 8vh;
         }
-        .header h1 { color: #cc0000; font-size: 3.2vh; font-weight: 700; }
-        .header-right { display: flex; gap: 1.5vw; align-items: center; }
-        .round-badge { background: #cc0000; padding: 0.5vh 2vw; border-radius: 50px; font-size: 2.4vh; font-weight: bold; }
-        .refresh-btn { background: #cc0000; color: white; border: none; padding: 0.5vh 1.5vw; border-radius: 6px; cursor: pointer; font-size: 2vh; }
-        .timer-container { display: flex; align-items: center; gap: 0.8vw; flex-shrink: 0; }
+        .header h1 {
+            color: #cc0000;
+            font-size: 3.2vh;
+            font-weight: 700;
+        }
+        .header-right {
+            display: flex;
+            gap: 1.5vw;
+            align-items: center;
+        }
+        .round-badge {
+            background: #cc0000;
+            padding: 0.5vh 2vw;
+            border-radius: 50px;
+            font-size: 2.4vh;
+            font-weight: bold;
+            color: #fff;
+        }
+        .refresh-btn {
+            background: #cc0000;
+            color: #fff;
+            border: none;
+            padding: 0.5vh 1.5vw;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 2vh;
+        }
+
+        /* ---------- TIMER ---------- */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+            flex-shrink: 0;
+        }
         .timer-display {
             font-size: 4.5vh;
             font-weight: 700;
@@ -43,6 +84,7 @@
             border-radius: 8px;
             background: #1a1a1a;
             border: 2px solid #444;
+            color: #fff;
             transition: all 0.3s ease;
         }
         .timer-display.warning { color: #ffc107; border-color: #ffc107; animation: pulse-timer 0.8s infinite; }
@@ -50,12 +92,14 @@
         .timer-display.time-up { color: #ff0000; border-color: #ff0000; background: #2a0000; animation: flash-timer 0.5s infinite; }
         @keyframes pulse-timer { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
         @keyframes flash-timer { 0% { opacity: 1; background: #2a0000; } 50% { opacity: 0.7; background: #4a0000; } 100% { opacity: 1; background: #2a0000; } }
-        .timer-label { font-size: 2vh; color: #888; font-weight: 500; }
+        .timer-label { font-size: 2vh; color: #aaa; font-weight: 500; }
         .time-up-message { font-size: 3vh; font-weight: bold; color: #ff0000; margin-left: 1vw; animation: flash-timer 0.5s infinite; display: none; }
         .time-up-message.visible { display: inline-block; }
+
+        /* ---------- QUESTION AREA ---------- */
         .question-area {
             flex: 1;
-            background: #3a3a3a;
+            background: #111;  /* dark grey for contrast, still mostly black */
             border-radius: 16px;
             padding: 1.5vh 2vw;
             display: flex;
@@ -64,19 +108,113 @@
             min-height: 0;
             overflow: hidden;
         }
-        .question-text { font-size: 3.6vh; line-height: 1.3; font-weight: 500; margin-bottom: 1.2vh; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8vh 2vw; flex-shrink: 0; }
-        .option-item { background: #4a4a4a; padding: 0.8vh 1vw; border-radius: 10px; font-size: 2.4vh; border-left: 6px solid #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .option-item .letter { font-weight: bold; color: #cc0000; margin-right: 10px; }
-        .current-school { background: #cc0000; padding: 0.6vh 1.5vw; border-radius: 10px; display: inline-block; font-size: 2.8vh; font-weight: bold; margin-top: 1vh; flex-shrink: 0; animation: pulse 1.5s infinite; align-self: flex-start; }
+        .question-text {
+            font-size: 3.6vh;
+            line-height: 1.3;
+            font-weight: 500;
+            margin-bottom: 1.2vh;
+            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            color: #fff;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8vh 2vw;
+            flex-shrink: 0;
+        }
+        .option-item {
+            background: #222;
+            padding: 0.8vh 1vw;
+            border-radius: 10px;
+            font-size: 2.4vh;
+            border-left: 6px solid #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #fff;
+        }
+        .option-item .letter {
+            font-weight: bold;
+            color: #cc0000;
+            margin-right: 10px;
+        }
+
+        /* ---------- CURRENT SCHOOL ---------- */
+        .current-school {
+            background: #cc0000;
+            padding: 0.6vh 1.5vw;
+            border-radius: 10px;
+            display: inline-block;
+            font-size: 2.8vh;
+            font-weight: bold;
+            margin-top: 1vh;
+            flex-shrink: 0;
+            animation: pulse 1.5s infinite;
+            align-self: flex-start;
+            color: #fff;
+        }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-        .status-dead { color: #ff6b6b; font-size: 3vh; font-weight: bold; margin-top: 1vh; flex-shrink: 0; }
-        .scores-container { display: flex; flex-wrap: wrap; gap: 0.6vh 1vw; margin-top: 1.2vh; padding-top: 1vh; border-top: 2px solid #444; flex-shrink: 0; height: 10vh; overflow: hidden; align-content: flex-start; }
-        .score-chip { background: #3a3a3a; padding: 0.4vh 1vw; border-radius: 50px; font-size: 2vh; border: 2px solid transparent; white-space: nowrap; }
-        .score-chip.active-school { border-color: #cc0000; background: #4a1a1a; }
-        .score-chip .pts { font-weight: bold; color: #ffc107; margin-left: 6px; }
-        .footer { margin-top: 0.5vh; text-align: center; color: #666; font-size: 1.6vh; flex-shrink: 0; }
-        .debug-info { color: #444; font-size: 1.4vh; text-align: center; flex-shrink: 0; }
+        .status-dead {
+            color: #ff6b6b;
+            font-size: 3vh;
+            font-weight: bold;
+            margin-top: 1vh;
+            flex-shrink: 0;
+        }
+
+        /* ---------- SCORES ---------- */
+        .scores-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6vh 1vw;
+            margin-top: 1.2vh;
+            padding-top: 1vh;
+            border-top: 2px solid #444;
+            flex-shrink: 0;
+            height: 10vh;
+            overflow: hidden;
+            align-content: flex-start;
+        }
+        .score-chip {
+            background: #222;
+            padding: 0.4vh 1vw;
+            border-radius: 50px;
+            font-size: 2vh;
+            border: 2px solid transparent;
+            white-space: nowrap;
+            color: #fff;
+        }
+        .score-chip.active-school {
+            border-color: #cc0000;
+            background: #3a1a1a;
+        }
+        .score-chip .pts {
+            font-weight: bold;
+            color: #ffc107;
+            margin-left: 6px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            margin-top: 0.5vh;
+            text-align: center;
+            color: #666;
+            font-size: 1.6vh;
+            flex-shrink: 0;
+        }
+        .debug-info {
+            color: #444;
+            font-size: 1.4vh;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 768px) {
             .options-grid { grid-template-columns: 1fr; gap: 0.6vh; }
             .option-item { font-size: 2vh; padding: 0.5vh 1.5vw; white-space: normal; }
@@ -103,6 +241,7 @@
 </head>
 <body>
 <div class="projector-container">
+    <!-- HEADER -->
     <div class="header">
         <h1>🏆 Megatek ICT Quiz</h1>
         <div class="header-right">
@@ -116,6 +255,7 @@
         </div>
     </div>
 
+    <!-- QUESTION AREA -->
     <div class="question-area">
         <div class="question-text" id="questionText">Load a question to begin</div>
         <div class="options-grid" id="optionsContainer">
@@ -127,10 +267,12 @@
         <div id="deadIndicator" style="display:none;" class="status-dead">💀 QUESTION DEAD</div>
     </div>
 
+    <!-- SCORES -->
     <div class="scores-container" id="scoresContainer">
         <div style="color:#888; font-size:1.8vh;">No schools in this round</div>
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">📡 Live feed • Auto‑updates every 2 seconds</div>
     <div class="debug-info" id="debugInfo">Last updated: N/A</div>
 </div>
@@ -172,9 +314,7 @@
 
             if (state.question_id !== currentQuestionId) {
                 currentQuestionId = state.question_id;
-                // Reset timer, but do NOT auto-start – user controls it
                 await fetch('/api/timer/reset', { method: 'POST' });
-                // Remove auto-start – no fetch('/api/timer/start')
                 updateTimerDisplay();
             }
 
