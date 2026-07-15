@@ -36,9 +36,9 @@ current_state = {
 # ---------- Timer State (no thread) ----------
 timer_state = {
     'running': False,
-    'start_time': None,      # server timestamp when started
-    'max_time': 15,          # seconds
-    'time_left': 15,         # will be computed on request
+    'start_time': None,
+    'max_time': 15,
+    'time_left': 15,
     'round_name': ''
 }
 
@@ -77,7 +77,6 @@ def update_projector_state(round_id, question_id, turn_index, scores_dict, is_de
                 timer_state['max_time'] = 10
             else:
                 timer_state['max_time'] = 15
-            # Only reset time_left if not running
             if not timer_state['running']:
                 timer_state['time_left'] = timer_state['max_time']
                 timer_state['start_time'] = None
@@ -266,7 +265,7 @@ def timer_start():
     if timer_state['time_left'] <= 0:
         timer_state['time_left'] = timer_state['max_time']
     timer_state['running'] = True
-    timer_state['start_time'] = time.time()  # server timestamp in seconds
+    timer_state['start_time'] = time.time()
     return jsonify(timer_state)
 
 @app.route('/api/timer/stop', methods=['POST'])
@@ -287,7 +286,6 @@ def timer_reset():
 @app.route('/api/timer/state', methods=['GET'])
 def get_timer_state():
     global timer_state
-    # Compute time_left if running
     if timer_state['running'] and timer_state['start_time'] is not None:
         elapsed = time.time() - timer_state['start_time']
         remaining = timer_state['max_time'] - elapsed
@@ -296,7 +294,7 @@ def get_timer_state():
             timer_state['time_left'] = 0
             timer_state['start_time'] = None
         else:
-            timer_state['time_left'] = int(remaining) + 1  # round up
+            timer_state['time_left'] = int(remaining) + 1
     return jsonify({
         'running': timer_state['running'],
         'time_left': timer_state['time_left'],
@@ -315,7 +313,7 @@ def timer_set():
     return jsonify(timer_state)
 
 # ---------- Reset DB (protected, no shell needed) ----------
-RESET_TOKEN = os.environ.get('RESET_TOKEN', 'megatek2024')  # change this!
+RESET_TOKEN = os.environ.get('RESET_TOKEN', 'megatek2024')
 
 @app.route('/reset-db')
 def reset_database():
@@ -323,29 +321,40 @@ def reset_database():
     if token != RESET_TOKEN:
         return "Unauthorized – provide ?token=YOUR_TOKEN", 401
 
-    # Drop all tables and recreate
     db.drop_all()
     db.create_all()
-    init_db()  # re-populates with current school names
+    init_db()
     return "Database reset successfully! New school names are applied."
 
 # ---------- Init DB ----------
 def init_db():
     if School.query.count() == 0:
-        # EDIT YOUR SCHOOL NAMES HERE
+        # 14 SCHOOLS (updated list)
         school_names = [
-            "School 1", "School 2", "School 3", "School 4", "School 5",
-            "School 6", "School 7", "School 8", "School 9", "School 10",
-            "School 11", "School 12", "School 13", "School 14", "School 15"
+            "Methodist Primary School, Gberigbe",
+            "Ayangbure Primary School, Ikorodu",
+            "Salvation Army Pry. School, Ikorodu",
+            "Temidire Primary School Ikorodu",
+            "Oga Primary School, Ikorodu",
+            "Anglican Primary School, Ikorodu",
+            "Aga Primary School, Ikorodu",
+            "J. I. Primary School, Ikorodu",
+            "Muslim Primary School, Ikorodu",
+            "Ijomu Muslim Primary School, Ikorodu",
+            "Community Primary School, Mowo-Nla",
+            "African Bethel Pry. School, Ikorodu",
+            "Etunrenren Primary School, Ikorodu",
+            "Holy Trinity Primary School, Ikorodu"
         ]
         for name in school_names:
             db.session.add(School(name=name))
         db.session.commit()
 
+        # ROUNDS: 1-5 for R1, 6-10 for R2, 11-14 for R3
         rounds_config = [
             ("Round 1", [1,2,3,4,5]),
             ("Round 2", [6,7,8,9,10]),
-            ("Round 3", [11,12,13,14,15]),
+            ("Round 3", [11,12,13,14]),
             ("Round 4 (Finals)", []),
             ("Round 5 (Finals)", []),
             ("Tiebreaker", [])

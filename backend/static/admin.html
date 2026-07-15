@@ -6,7 +6,6 @@
     <title>Megatek Quiz - Admin</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        /* same as before, plus timer controls styling */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f4f4f4; padding: 20px; }
         .admin-container { max-width: 1200px; margin: 0 auto; }
@@ -18,7 +17,6 @@
         .btn-danger { background: #dc3545; color: white; }
         .btn-warning { background: #ffc107; color: #333; }
         .btn-secondary { background: #6c757d; color: white; }
-        .btn-info { background: #17a2b8; color: white; }
         .btn-success { background: #28a745; color: white; }
         .btn-reveal { background: #fd7e14; color: white; }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
@@ -136,7 +134,7 @@
     let questionAnswered = false;
     let questionDead = false;
     let correctAnswerLetter = '';
-    let roundMaxQuestions = 25;
+    let roundMaxQuestions = 30;   // <-- CHANGED to 30
     
     const roundSelect = document.getElementById('roundSelect');
     const questionInput = document.getElementById('questionInput');
@@ -205,7 +203,6 @@
         questionStatus.innerHTML = '';
         enableButtons(false);
         await updateProjectorState(currentRoundId, null, 0, false);
-        // Reset timer display (just visual)
         timerDisplay.textContent = '--';
     });
 
@@ -218,12 +215,13 @@
         }
         questionError.textContent = '';
         let errorMsg = null;
-        if (currentRoundId === 1 && (qNum < 1 || qNum > 25)) {
-            errorMsg = 'Round 1 only allows questions 1-25';
-        } else if (currentRoundId === 2 && (qNum < 26 || qNum > 50)) {
-            errorMsg = 'Round 2 only allows questions 26-50';
-        } else if (currentRoundId === 3 && (qNum < 51 || qNum > 75)) {
-            errorMsg = 'Round 3 only allows questions 51-75';
+        // UPDATED RANGES: 1-30, 31-60, 61-90
+        if (currentRoundId === 1 && (qNum < 1 || qNum > 30)) {
+            errorMsg = 'Round 1 only allows questions 1-30';
+        } else if (currentRoundId === 2 && (qNum < 31 || qNum > 60)) {
+            errorMsg = 'Round 2 only allows questions 31-60';
+        } else if (currentRoundId === 3 && (qNum < 61 || qNum > 90)) {
+            errorMsg = 'Round 3 only allows questions 61-90';
         }
         if (errorMsg) {
             questionError.textContent = errorMsg;
@@ -242,8 +240,8 @@
         }
         const countRes = await fetch(`/api/round_questions_count/${currentRoundId}`);
         const countData = await countRes.json();
-        if (countData.count >= 25) {
-            questionError.textContent = '⚠️ This round already has 25 questions answered!';
+        if (countData.count >= 30) {   // <-- CHANGED to 30
+            questionError.textContent = '⚠️ This round already has 30 questions answered!';
             return;
         }
         questionError.textContent = '';
@@ -282,7 +280,6 @@
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
         await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
-        // Start timer automatically when question loads
         await fetch('/api/timer/start', { method: 'POST' });
         updateTimerDisplay();
     });
@@ -309,7 +306,6 @@
         updateTimerDisplay();
     });
 
-    // Periodically update timer display
     setInterval(updateTimerDisplay, 1000);
 
     // ---------- Reveal Answer ----------
@@ -410,7 +406,6 @@
             updateTurn();
             currentTurnText.textContent += ' ✅ Done!';
             await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
-            // Stop timer after scoring
             await fetch('/api/timer/stop', { method: 'POST' });
             updateTimerDisplay();
         } else {
@@ -442,7 +437,6 @@
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
         updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
-        // Reset timer
         fetch('/api/timer/reset', { method: 'POST' });
         updateTimerDisplay();
     });
@@ -475,7 +469,6 @@
             });
             updateQuestionCount(currentRoundId);
             updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, true);
-            // Stop timer
             fetch('/api/timer/stop', { method: 'POST' });
             updateTimerDisplay();
         }
@@ -525,7 +518,7 @@
     async function updateQuestionCount(roundId) {
         const res = await fetch(`/api/round_questions_count/${roundId}`);
         const data = await res.json();
-        questionCount.textContent = `Questions used: ${data.count}/25`;
+        questionCount.textContent = `Questions used: ${data.count}/30`;  // <-- CHANGED to 30
     }
 
     async function updateProjectorState(roundId, questionId, turnIndex, isDead) {
