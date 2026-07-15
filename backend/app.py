@@ -32,6 +32,14 @@ current_state = {
     "is_dead": False
 }
 
+# ---------- Timer State ----------
+timer_state = {
+    'running': False,
+    'time_left': 15,
+    'max_time': 15,
+    'round_name': ''
+}
+
 # ---------- Helper Functions ----------
 def get_question_for_admin(q_id):
     for q in QUESTIONS:
@@ -49,7 +57,7 @@ def get_round_scores_dict(round_id):
     return agg
 
 def update_projector_state(round_id, question_id, turn_index, scores_dict, is_dead=False):
-    global current_state
+    global current_state, timer_state
     current_state["timestamp"] = datetime.now().isoformat()
     current_state["is_dead"] = is_dead
     
@@ -61,6 +69,14 @@ def update_projector_state(round_id, question_id, turn_index, scores_dict, is_de
             school_ids = round_obj.school_ids
             schools = School.query.filter(School.id.in_(school_ids)).all()
             current_state["schools"] = [{"id": s.id, "name": s.name} for s in schools]
+            
+            # Set timer max time based on round
+            if round_obj and ('Round 4' in round_obj.name or 'Round 5' in round_obj.name):
+                timer_state['max_time'] = 10
+            else:
+                timer_state['max_time'] = 15
+            timer_state['time_left'] = timer_state['max_time']
+            timer_state['round_name'] = round_obj.name
         else:
             current_state["schools"] = []
     else:
@@ -137,12 +153,10 @@ def check_question_used():
     data = request.json
     round_id = data.get('round_id')
     question_id = data.get('question_id')
-    
     used = UsedQuestion.query.filter_by(
         round_id=round_id, 
         question_id=question_id
     ).first()
-    
     return jsonify({'used': used is not None})
 
 @app.route('/api/score', methods=['POST'])
@@ -167,7 +181,6 @@ def add_score():
     db.session.add(new_score)
     db.session.commit()
     
-    # Mark question as used in this round
     used = UsedQuestion.query.filter_by(
         round_id=round_id,
         question_id=question_id
@@ -241,43 +254,7 @@ def reset_round(round_id):
     )
     return jsonify({'success': True})
 
-# ---------- Init DB ----------
-def init_db():
-    if School.query.count() == 0:
-        school_names = [
-            "School 1", "School 2", "School 3", "School 4", "School 5",
-            "School 6", "School 7", "School 8", "School 9", "School 10",
-            "School 11", "School 12", "School 13", "School 14", "School 15"
-        ]
-        for name in school_names:
-            db.session.add(School(name=name))
-        db.session.commit()
-
-        rounds_config = [
-            ("Round 1", [1,2,3,4,5]),
-            ("Round 2", [6,7,8,9,10]),
-            ("Round 3", [11,12,13,14,15]),
-            ("Round 4 (Finals)", []),
-            ("Round 5 (Finals)", []),
-            ("Tiebreaker", [])
-        ]
-        for name, ids in rounds_config:
-            db.session.add(Round(name=name, school_ids=ids))
-        db.session.commit()
-
-# ---- This runs on every startup (including gunicorn) ----
-with app.app_context():
-    db.create_all()
-    init_db()
-    
-# ---------- Timer State ----------
-timer_state = {
-    'running': False,
-    'time_left': 15,
-    'max_time': 15,
-    'round_name': ''
-}
-
+# ---------- Timer Endpoints ----------
 @app.route('/api/timer/start', methods=['POST'])
 def timer_start():
     global timer_state
@@ -309,7 +286,35 @@ def timer_set():
     if not timer_state['running']:
         timer_state['time_left'] = timer_state['max_time']
     return jsonify(timer_state)
-    
+
+# ---------- Init DB ----------
+def init_db():
+    if School.query.count() == 0:
+        school_names = [
+            "School 1", "School 2", "School 3", "School 4", "School 5",
+            "School 6", "School 7", "School 8", "School 9", "School 10",
+            "School 11", "School 12", "School 13", "School 14", "School 15"
+        ]
+        for name in school_names:
+            db.session.add(School(name=name))
+        db.session.commit()
+
+        rounds_config = [
+            ("Round 1", [1,2,3,4,5]),
+            ("Round 2", [6,7,8,9,10]),
+            ("Round 3", [11,12,13,14,15]),
+            ("Round 4 (Finals)", []),
+            ("Round 5 (Finals)", []),
+            ("Tiebreaker", [])
+        ]
+        for name, ids in rounds_config:
+            db.session.add(Round(name=name, school_ids=ids))
+        db.session.commit()
+
+# ---- This runs on every startup (including gunicorn) ----
+with app.app_context():
+    db.create_all()
+    init_db()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
