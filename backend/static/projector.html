@@ -14,7 +14,7 @@
         html, body {
             width: 100vw;
             height: 100vh;
-            overflow: hidden;   /* no scrollbars ever */
+            overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #1a1a1a;
             color: white;
@@ -30,10 +30,10 @@
             padding: 1.5vh 2vw;
             border-top: 6px solid #cc0000;
             box-sizing: border-box;
-            overflow: hidden;   /* prevent any child overflow */
+            overflow: hidden;
         }
 
-        /* ---------- HEADER (always compact) ---------- */
+        /* ---------- HEADER ---------- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -42,13 +42,18 @@
             padding-bottom: 0.8vh;
             margin-bottom: 1.2vh;
             flex-shrink: 0;
-            height: 8vh; /* fixed height */
+            height: 8vh;
         }
         .header h1 {
             color: #cc0000;
             font-size: 3.2vh;
             font-weight: 700;
             line-height: 1.2;
+        }
+        .header-right {
+            display: flex;
+            gap: 1.5vw;
+            align-items: center;
         }
         .round-badge {
             background: #cc0000;
@@ -67,7 +72,69 @@
             font-size: 2vh;
         }
 
-        /* ---------- QUESTION AREA (flex-grow, no overflow) ---------- */
+        /* ---------- TIMER (NEW) ---------- */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+            flex-shrink: 0;
+        }
+        .timer-display {
+            font-size: 4.5vh;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            min-width: 8vw;
+            text-align: center;
+            padding: 0.2vh 1vw;
+            border-radius: 8px;
+            background: #1a1a1a;
+            border: 2px solid #444;
+            transition: all 0.3s ease;
+        }
+        .timer-display.warning {
+            color: #ffc107;
+            border-color: #ffc107;
+            animation: pulse-timer 0.8s infinite;
+        }
+        .timer-display.danger {
+            color: #dc3545;
+            border-color: #dc3545;
+            animation: pulse-timer 0.4s infinite;
+        }
+        .timer-display.time-up {
+            color: #ff0000;
+            border-color: #ff0000;
+            background: #2a0000;
+            animation: flash-timer 0.5s infinite;
+        }
+        @keyframes pulse-timer {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes flash-timer {
+            0% { opacity: 1; background: #2a0000; }
+            50% { opacity: 0.7; background: #4a0000; }
+            100% { opacity: 1; background: #2a0000; }
+        }
+        .timer-label {
+            font-size: 2vh;
+            color: #888;
+            font-weight: 500;
+        }
+        .time-up-message {
+            font-size: 3vh;
+            font-weight: bold;
+            color: #ff0000;
+            margin-left: 1vw;
+            animation: flash-timer 0.5s infinite;
+            display: none;
+        }
+        .time-up-message.visible {
+            display: inline-block;
+        }
+
+        /* ---------- QUESTION AREA ---------- */
         .question-area {
             flex: 1;
             background: #3a3a3a;
@@ -76,17 +143,16 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 0;   /* flex override */
+            min-height: 0;
             overflow: hidden;
+            position: relative;
         }
-
         .question-text {
             font-size: 3.6vh;
             line-height: 1.3;
             font-weight: 500;
             margin-bottom: 1.2vh;
             flex-shrink: 0;
-            /* If text is too long, we truncate with ellipsis (but better to keep full) */
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -94,7 +160,7 @@
             -webkit-box-orient: vertical;
         }
 
-        /* ---------- OPTIONS GRID (2 columns, compact) ---------- */
+        /* ---------- OPTIONS GRID ---------- */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -117,7 +183,7 @@
             margin-right: 10px;
         }
 
-        /* ---------- CURRENT SCHOOL (pulsing) ---------- */
+        /* ---------- CURRENT SCHOOL ---------- */
         .current-school {
             background: #cc0000;
             padding: 0.6vh 1.5vw;
@@ -143,7 +209,7 @@
             flex-shrink: 0;
         }
 
-        /* ---------- SCORES (fixed height, wrap) ---------- */
+        /* ---------- SCORES ---------- */
         .scores-container {
             display: flex;
             flex-wrap: wrap;
@@ -152,7 +218,7 @@
             padding-top: 1vh;
             border-top: 2px solid #444;
             flex-shrink: 0;
-            height: 10vh;   /* fixed height so it doesn't grow */
+            height: 10vh;
             overflow: hidden;
             align-content: flex-start;
         }
@@ -174,7 +240,7 @@
             margin-left: 6px;
         }
 
-        /* ---------- FOOTER (tiny) ---------- */
+        /* ---------- FOOTER ---------- */
         .footer {
             margin-top: 0.5vh;
             text-align: center;
@@ -189,18 +255,10 @@
             flex-shrink: 0;
         }
 
-        /* ---------- RESPONSIVE (smaller screens) ---------- */
+        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 768px) {
-            .options-grid {
-                grid-template-columns: 1fr;
-                gap: 0.6vh;
-            }
-            .option-item {
-                font-size: 2vh;
-                padding: 0.5vh 1.5vw;
-                white-space: normal;
-                line-height: 1.3;
-            }
+            .options-grid { grid-template-columns: 1fr; gap: 0.6vh; }
+            .option-item { font-size: 2vh; padding: 0.5vh 1.5vw; white-space: normal; line-height: 1.3; }
             .header h1 { font-size: 2.4vh; }
             .round-badge { font-size: 1.8vh; padding: 0.3vh 2vw; }
             .refresh-btn { font-size: 1.6vh; }
@@ -208,6 +266,7 @@
             .current-school { font-size: 2vh; }
             .score-chip { font-size: 1.6vh; }
             .scores-container { height: 12vh; }
+            .timer-display { font-size: 3.5vh; min-width: 10vw; }
         }
         @media (max-height: 500px) {
             .header h1 { font-size: 2vh; }
@@ -217,6 +276,7 @@
             .current-school { font-size: 2vh; }
             .score-chip { font-size: 1.4vh; }
             .scores-container { height: 8vh; }
+            .timer-display { font-size: 3vh; min-width: 10vw; }
         }
     </style>
 </head>
@@ -225,7 +285,13 @@
     <!-- HEADER -->
     <div class="header">
         <h1>🏆 Megatek ICT Quiz</h1>
-        <div style="display:flex; gap:1vw; align-items:center;">
+        <div class="header-right">
+            <!-- TIMER -->
+            <div class="timer-container">
+                <span class="timer-label">⏱</span>
+                <span class="timer-display" id="timerDisplay">--</span>
+                <span class="time-up-message" id="timeUpMessage">⏰ TIME UP!</span>
+            </div>
             <button onclick="fetchState()" class="refresh-btn">🔄 Refresh</button>
             <div class="round-badge" id="roundName">Waiting...</div>
         </div>
@@ -255,7 +321,70 @@
 
 <script>
     let lastState = null;
+    let timerInterval = null;
+    let timeLeft = 0;
+    let currentQuestionId = null;
 
+    // ---------- TIMER FUNCTIONS ----------
+    function startTimer(seconds) {
+        clearInterval(timerInterval);
+        timeLeft = seconds;
+        updateTimerDisplay();
+
+        const timerEl = document.getElementById('timerDisplay');
+        const timeUpMsg = document.getElementById('timeUpMessage');
+        timeUpMsg.classList.remove('visible');
+
+        // Remove all classes
+        timerEl.classList.remove('warning', 'danger', 'time-up');
+
+        if (seconds <= 0) {
+            timerEl.textContent = '--';
+            return;
+        }
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                // Show TIME UP!
+                const timeUpMsg = document.getElementById('timeUpMessage');
+                timeUpMsg.classList.add('visible');
+                const timerEl = document.getElementById('timerDisplay');
+                timerEl.classList.add('time-up');
+                timerEl.textContent = '0';
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay() {
+        const timerEl = document.getElementById('timerDisplay');
+        timerEl.textContent = timeLeft;
+
+        // Update color based on time left
+        timerEl.classList.remove('warning', 'danger', 'time-up');
+        if (timeLeft <= 0) {
+            timerEl.classList.add('time-up');
+        } else if (timeLeft <= 5) {
+            timerEl.classList.add('danger');
+        } else if (timeLeft <= 10) {
+            timerEl.classList.add('warning');
+        }
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        const timerEl = document.getElementById('timerDisplay');
+        timerEl.classList.remove('warning', 'danger', 'time-up');
+        timerEl.textContent = '--';
+        document.getElementById('timeUpMessage').classList.remove('visible');
+    }
+
+    // ---------- FETCH STATE ----------
     async function fetchState() {
         try {
             const res = await fetch('/api/state');
@@ -268,7 +397,30 @@
             document.getElementById('roundName').textContent = state.round_name || 'No Round';
 
             // Question
-            document.getElementById('questionText').textContent = state.question_text || 'No question loaded';
+            const questionText = state.question_text || 'No question loaded';
+            document.getElementById('questionText').textContent = questionText;
+
+            // Check if question changed
+            if (state.question_id !== currentQuestionId) {
+                currentQuestionId = state.question_id;
+                // Restart timer if question is not dead and not answered
+                if (!state.is_dead && state.question_id) {
+                    // Determine time limit based on round
+                    let timeLimit = 15; // default
+                    const roundName = state.round_name || '';
+                    if (roundName.includes('Round 4') || roundName.includes('Round 5')) {
+                        timeLimit = 10;
+                    }
+                    startTimer(timeLimit);
+                } else {
+                    stopTimer();
+                }
+            }
+
+            // If question is dead or no question, stop timer
+            if (state.is_dead || !state.question_id) {
+                stopTimer();
+            }
 
             // Options
             const optionsContainer = document.getElementById('optionsContainer');
@@ -289,6 +441,7 @@
             if (state.is_dead) {
                 deadEl.style.display = 'block';
                 turnEl.style.display = 'none';
+                stopTimer();
             } else if (state.current_school) {
                 deadEl.style.display = 'none';
                 turnEl.textContent = `🎯 ${state.current_school.name} (Turn)`;
@@ -322,6 +475,7 @@
         }
     }
 
+    // ---------- START ----------
     fetchState();
     setInterval(fetchState, 2000);
 </script>
