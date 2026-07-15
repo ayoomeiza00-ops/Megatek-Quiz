@@ -1,12 +1,10 @@
-from flask import Flask, request, jsonify, session, render_template_string
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from models import db, School, Round, Score, UsedQuestion
 import json
 import os
 from datetime import datetime
-import threading
 import time
-import sys
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-please-change')
@@ -20,7 +18,7 @@ db.init_app(app)
 with open('questions.json', 'r') as f:
     QUESTIONS = json.load(f)
 
-# ---------- Global State for Projector ----------
+# ---------- Global State ----------
 current_state = {
     "round_id": None,
     "round_name": "No Round Selected",
@@ -35,35 +33,14 @@ current_state = {
     "is_dead": False
 }
 
-# ---------- Timer State ----------
+# ---------- Timer State (no thread) ----------
 timer_state = {
     'running': False,
-    'time_left': 15,
-    'max_time': 15,
+    'start_time': None,      # server timestamp when started
+    'max_time': 15,          # seconds
+    'time_left': 15,         # will be computed on request
     'round_name': ''
 }
-
-# ---------- Timer Background Thread ----------
-def timer_countdown():
-    """Background thread to decrement timer every second."""
-    global timer_state
-    print("🟢 Timer thread started!", file=sys.stderr)
-    while True:
-        try:
-            if timer_state['running'] and timer_state['time_left'] > 0:
-                timer_state['time_left'] -= 1
-                if timer_state['time_left'] % 5 == 0:
-                    print(f"⏱️ Timer: {timer_state['time_left']}s left", file=sys.stderr)
-                if timer_state['time_left'] <= 0:
-                    timer_state['running'] = False
-                    print("⏰ Timer reached zero!", file=sys.stderr)
-            time.sleep(1)
-        except Exception as e:
-            print(f"❌ Timer error: {e}", file=sys.stderr)
-
-# Start the daemon thread (stops when app stops)
-timer_thread = threading.Thread(target=timer_countdown, daemon=True)
-timer_thread.start()
 
 # ---------- Helper Functions ----------
 def get_question_for_admin(q_id):
@@ -100,7 +77,10 @@ def update_projector_state(round_id, question_id, turn_index, scores_dict, is_de
                 timer_state['max_time'] = 10
             else:
                 timer_state['max_time'] = 15
-            timer_state['time_left'] = timer_state['max_time']
+            # Only reset time_left if not running
+            if not timer_state['running']:
+                timer_state['time_left'] = timer_state['max_time']
+                timer_state['start_time'] = None
             timer_state['round_name'] = round_obj.name
         else:
             current_state["schools"] = []
@@ -279,19 +259,21 @@ def reset_round(round_id):
     )
     return jsonify({'success': True})
 
-# ---------- Timer Endpoints ----------
+# ---------- Timer Endpoints (no thread) ----------
 @app.route('/api/timer/start', methods=['POST'])
 def timer_start():
     global timer_state
     if timer_state['time_left'] <= 0:
         timer_state['time_left'] = timer_state['max_time']
     timer_state['running'] = True
+    timer_state['start_time'] = time.time()  # server timestamp in seconds
     return jsonify(timer_state)
 
 @app.route('/api/timer/stop', methods=['POST'])
 def timer_stop():
     global timer_state
     timer_state['running'] = False
+    timer_state['start_time'] = None
     return jsonify(timer_state)
 
 @app.route('/api/timer/reset', methods=['POST'])
@@ -299,11 +281,28 @@ def timer_reset():
     global timer_state
     timer_state['running'] = False
     timer_state['time_left'] = timer_state['max_time']
+    timer_state['start_time'] = None
     return jsonify(timer_state)
 
 @app.route('/api/timer/state', methods=['GET'])
 def get_timer_state():
-    return jsonify(timer_state)
+    global timer_state
+    # Compute time_left if running
+    if timer_state['running'] and timer_state['start_time'] is not None:
+        elapsed = time.time() - timer_state['start_time']
+        remaining = timer_state['max_time'] - elapsed
+        if remaining <= 0:
+            timer_state['running'] = False
+            timer_state['time_left'] = 0
+            timer_state['start_time'] = None
+        else:
+            timer_state['time_left'] = int(remaining) + 1  # round up
+    return jsonify({
+        'running': timer_state['running'],
+        'time_left': timer_state['time_left'],
+        'max_time': timer_state['max_time'],
+        'round_name': timer_state['round_name']
+    })
 
 @app.route('/api/timer/set', methods=['POST'])
 def timer_set():
@@ -312,11 +311,28 @@ def timer_set():
     timer_state['max_time'] = data.get('seconds', 15)
     if not timer_state['running']:
         timer_state['time_left'] = timer_state['max_time']
+        timer_state['start_time'] = None
     return jsonify(timer_state)
+
+# ---------- Reset DB (protected, no shell needed) ----------
+RESET_TOKEN = os.environ.get('RESET_TOKEN', 'megatek2024')  # change this!
+
+@app.route('/reset-db')
+def reset_database():
+    token = request.args.get('token')
+    if token != RESET_TOKEN:
+        return "Unauthorized – provide ?token=YOUR_TOKEN", 401
+
+    # Drop all tables and recreate
+    db.drop_all()
+    db.create_all()
+    init_db()  # re-populates with current school names
+    return "Database reset successfully! New school names are applied."
 
 # ---------- Init DB ----------
 def init_db():
     if School.query.count() == 0:
+        # EDIT YOUR SCHOOL NAMES HERE
         school_names = [
             "School 1", "School 2", "School 3", "School 4", "School 5",
             "School 6", "School 7", "School 8", "School 9", "School 10",
@@ -338,7 +354,7 @@ def init_db():
             db.session.add(Round(name=name, school_ids=ids))
         db.session.commit()
 
-# ---- This runs on every startup (including gunicorn) ----
+# ---- Runs on app startup ----
 with app.app_context():
     db.create_all()
     init_db()
