@@ -4,6 +4,8 @@ from models import db, School, Round, Score, UsedQuestion
 import json
 import os
 from datetime import datetime
+import threading
+import time
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-please-change')
@@ -40,6 +42,19 @@ timer_state = {
     'round_name': ''
 }
 
+# ---------- Timer Countdown Thread ----------
+def timer_countdown():
+    global timer_state
+    while True:
+        if timer_state['running'] and timer_state['time_left'] > 0:
+            timer_state['time_left'] -= 1
+            if timer_state['time_left'] <= 0:
+                timer_state['running'] = False
+        time.sleep(1)
+
+timer_thread = threading.Thread(target=timer_countdown, daemon=True)
+timer_thread.start()
+
 # ---------- Helper Functions ----------
 def get_question_for_admin(q_id):
     for q in QUESTIONS:
@@ -71,7 +86,7 @@ def update_projector_state(round_id, question_id, turn_index, scores_dict, is_de
             current_state["schools"] = [{"id": s.id, "name": s.name} for s in schools]
             
             # Set timer max time based on round
-            if round_obj and ('Round 4' in round_obj.name or 'Round 5' in round_obj.name):
+            if 'Round 4' in round_obj.name or 'Round 5' in round_obj.name:
                 timer_state['max_time'] = 10
             else:
                 timer_state['max_time'] = 15
@@ -258,6 +273,8 @@ def reset_round(round_id):
 @app.route('/api/timer/start', methods=['POST'])
 def timer_start():
     global timer_state
+    if timer_state['time_left'] <= 0:
+        timer_state['time_left'] = timer_state['max_time']
     timer_state['running'] = True
     return jsonify(timer_state)
 
