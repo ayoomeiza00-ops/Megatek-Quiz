@@ -52,7 +52,6 @@ def timer_countdown():
         try:
             if timer_state['running'] and timer_state['time_left'] > 0:
                 timer_state['time_left'] -= 1
-                # Log only when it changes to verify activity
                 if timer_state['time_left'] % 5 == 0:
                     print(f"⏱️ Timer: {timer_state['time_left']}s left", file=sys.stderr)
                 if timer_state['time_left'] <= 0:
