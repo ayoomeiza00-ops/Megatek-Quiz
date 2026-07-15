@@ -269,6 +269,47 @@ def init_db():
 with app.app_context():
     db.create_all()
     init_db()
+    
+# ---------- Timer State ----------
+timer_state = {
+    'running': False,
+    'time_left': 15,
+    'max_time': 15,
+    'round_name': ''
+}
+
+@app.route('/api/timer/start', methods=['POST'])
+def timer_start():
+    global timer_state
+    timer_state['running'] = True
+    return jsonify(timer_state)
+
+@app.route('/api/timer/stop', methods=['POST'])
+def timer_stop():
+    global timer_state
+    timer_state['running'] = False
+    return jsonify(timer_state)
+
+@app.route('/api/timer/reset', methods=['POST'])
+def timer_reset():
+    global timer_state
+    timer_state['running'] = False
+    timer_state['time_left'] = timer_state['max_time']
+    return jsonify(timer_state)
+
+@app.route('/api/timer/state', methods=['GET'])
+def get_timer_state():
+    return jsonify(timer_state)
+
+@app.route('/api/timer/set', methods=['POST'])
+def timer_set():
+    data = request.json
+    global timer_state
+    timer_state['max_time'] = data.get('seconds', 15)
+    if not timer_state['running']:
+        timer_state['time_left'] = timer_state['max_time']
+    return jsonify(timer_state)
+    
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

@@ -5,22 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>📺 Quiz Projector</title>
     <style>
-        /* ---------- FULLSCREEN RESET ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #1a1a1a;
-            color: white;
-        }
-
-        /* ---------- CONTAINER FILLS EXACT VIEWPORT ---------- */
+        /* same as before, but we'll add timer styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100vw; height: 100vh; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a1a; color: white; }
         .projector-container {
             width: 100vw;
             height: 100vh;
@@ -32,8 +19,6 @@
             box-sizing: border-box;
             overflow: hidden;
         }
-
-        /* ---------- HEADER ---------- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -44,41 +29,11 @@
             flex-shrink: 0;
             height: 8vh;
         }
-        .header h1 {
-            color: #cc0000;
-            font-size: 3.2vh;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        .header-right {
-            display: flex;
-            gap: 1.5vw;
-            align-items: center;
-        }
-        .round-badge {
-            background: #cc0000;
-            padding: 0.5vh 2vw;
-            border-radius: 50px;
-            font-size: 2.4vh;
-            font-weight: bold;
-        }
-        .refresh-btn {
-            background: #cc0000;
-            color: white;
-            border: none;
-            padding: 0.5vh 1.5vw;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 2vh;
-        }
-
-        /* ---------- TIMER (NEW) ---------- */
-        .timer-container {
-            display: flex;
-            align-items: center;
-            gap: 0.8vw;
-            flex-shrink: 0;
-        }
+        .header h1 { color: #cc0000; font-size: 3.2vh; font-weight: 700; }
+        .header-right { display: flex; gap: 1.5vw; align-items: center; }
+        .round-badge { background: #cc0000; padding: 0.5vh 2vw; border-radius: 50px; font-size: 2.4vh; font-weight: bold; }
+        .refresh-btn { background: #cc0000; color: white; border: none; padding: 0.5vh 1.5vw; border-radius: 6px; cursor: pointer; font-size: 2vh; }
+        .timer-container { display: flex; align-items: center; gap: 0.8vw; flex-shrink: 0; }
         .timer-display {
             font-size: 4.5vh;
             font-weight: 700;
@@ -91,50 +46,14 @@
             border: 2px solid #444;
             transition: all 0.3s ease;
         }
-        .timer-display.warning {
-            color: #ffc107;
-            border-color: #ffc107;
-            animation: pulse-timer 0.8s infinite;
-        }
-        .timer-display.danger {
-            color: #dc3545;
-            border-color: #dc3545;
-            animation: pulse-timer 0.4s infinite;
-        }
-        .timer-display.time-up {
-            color: #ff0000;
-            border-color: #ff0000;
-            background: #2a0000;
-            animation: flash-timer 0.5s infinite;
-        }
-        @keyframes pulse-timer {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        @keyframes flash-timer {
-            0% { opacity: 1; background: #2a0000; }
-            50% { opacity: 0.7; background: #4a0000; }
-            100% { opacity: 1; background: #2a0000; }
-        }
-        .timer-label {
-            font-size: 2vh;
-            color: #888;
-            font-weight: 500;
-        }
-        .time-up-message {
-            font-size: 3vh;
-            font-weight: bold;
-            color: #ff0000;
-            margin-left: 1vw;
-            animation: flash-timer 0.5s infinite;
-            display: none;
-        }
-        .time-up-message.visible {
-            display: inline-block;
-        }
-
-        /* ---------- QUESTION AREA ---------- */
+        .timer-display.warning { color: #ffc107; border-color: #ffc107; animation: pulse-timer 0.8s infinite; }
+        .timer-display.danger { color: #dc3545; border-color: #dc3545; animation: pulse-timer 0.4s infinite; }
+        .timer-display.time-up { color: #ff0000; border-color: #ff0000; background: #2a0000; animation: flash-timer 0.5s infinite; }
+        @keyframes pulse-timer { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+        @keyframes flash-timer { 0% { opacity: 1; background: #2a0000; } 50% { opacity: 0.7; background: #4a0000; } 100% { opacity: 1; background: #2a0000; } }
+        .timer-label { font-size: 2vh; color: #888; font-weight: 500; }
+        .time-up-message { font-size: 3vh; font-weight: bold; color: #ff0000; margin-left: 1vw; animation: flash-timer 0.5s infinite; display: none; }
+        .time-up-message.visible { display: inline-block; }
         .question-area {
             flex: 1;
             background: #3a3a3a;
@@ -145,120 +64,23 @@
             justify-content: center;
             min-height: 0;
             overflow: hidden;
-            position: relative;
         }
-        .question-text {
-            font-size: 3.6vh;
-            line-height: 1.3;
-            font-weight: 500;
-            margin-bottom: 1.2vh;
-            flex-shrink: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-
-        /* ---------- OPTIONS GRID ---------- */
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8vh 2vw;
-            flex-shrink: 0;
-        }
-        .option-item {
-            background: #4a4a4a;
-            padding: 0.8vh 1vw;
-            border-radius: 10px;
-            font-size: 2.4vh;
-            border-left: 6px solid #666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .option-item .letter {
-            font-weight: bold;
-            color: #cc0000;
-            margin-right: 10px;
-        }
-
-        /* ---------- CURRENT SCHOOL ---------- */
-        .current-school {
-            background: #cc0000;
-            padding: 0.6vh 1.5vw;
-            border-radius: 10px;
-            display: inline-block;
-            font-size: 2.8vh;
-            font-weight: bold;
-            margin-top: 1vh;
-            flex-shrink: 0;
-            animation: pulse 1.5s infinite;
-            align-self: flex-start;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-        .status-dead {
-            color: #ff6b6b;
-            font-size: 3vh;
-            font-weight: bold;
-            margin-top: 1vh;
-            flex-shrink: 0;
-        }
-
-        /* ---------- SCORES ---------- */
-        .scores-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6vh 1vw;
-            margin-top: 1.2vh;
-            padding-top: 1vh;
-            border-top: 2px solid #444;
-            flex-shrink: 0;
-            height: 10vh;
-            overflow: hidden;
-            align-content: flex-start;
-        }
-        .score-chip {
-            background: #3a3a3a;
-            padding: 0.4vh 1vw;
-            border-radius: 50px;
-            font-size: 2vh;
-            border: 2px solid transparent;
-            white-space: nowrap;
-        }
-        .score-chip.active-school {
-            border-color: #cc0000;
-            background: #4a1a1a;
-        }
-        .score-chip .pts {
-            font-weight: bold;
-            color: #ffc107;
-            margin-left: 6px;
-        }
-
-        /* ---------- FOOTER ---------- */
-        .footer {
-            margin-top: 0.5vh;
-            text-align: center;
-            color: #666;
-            font-size: 1.6vh;
-            flex-shrink: 0;
-        }
-        .debug-info {
-            color: #444;
-            font-size: 1.4vh;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
+        .question-text { font-size: 3.6vh; line-height: 1.3; font-weight: 500; margin-bottom: 1.2vh; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8vh 2vw; flex-shrink: 0; }
+        .option-item { background: #4a4a4a; padding: 0.8vh 1vw; border-radius: 10px; font-size: 2.4vh; border-left: 6px solid #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .option-item .letter { font-weight: bold; color: #cc0000; margin-right: 10px; }
+        .current-school { background: #cc0000; padding: 0.6vh 1.5vw; border-radius: 10px; display: inline-block; font-size: 2.8vh; font-weight: bold; margin-top: 1vh; flex-shrink: 0; animation: pulse 1.5s infinite; align-self: flex-start; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        .status-dead { color: #ff6b6b; font-size: 3vh; font-weight: bold; margin-top: 1vh; flex-shrink: 0; }
+        .scores-container { display: flex; flex-wrap: wrap; gap: 0.6vh 1vw; margin-top: 1.2vh; padding-top: 1vh; border-top: 2px solid #444; flex-shrink: 0; height: 10vh; overflow: hidden; align-content: flex-start; }
+        .score-chip { background: #3a3a3a; padding: 0.4vh 1vw; border-radius: 50px; font-size: 2vh; border: 2px solid transparent; white-space: nowrap; }
+        .score-chip.active-school { border-color: #cc0000; background: #4a1a1a; }
+        .score-chip .pts { font-weight: bold; color: #ffc107; margin-left: 6px; }
+        .footer { margin-top: 0.5vh; text-align: center; color: #666; font-size: 1.6vh; flex-shrink: 0; }
+        .debug-info { color: #444; font-size: 1.4vh; text-align: center; flex-shrink: 0; }
         @media (max-width: 768px) {
             .options-grid { grid-template-columns: 1fr; gap: 0.6vh; }
-            .option-item { font-size: 2vh; padding: 0.5vh 1.5vw; white-space: normal; line-height: 1.3; }
+            .option-item { font-size: 2vh; padding: 0.5vh 1.5vw; white-space: normal; }
             .header h1 { font-size: 2.4vh; }
             .round-badge { font-size: 1.8vh; padding: 0.3vh 2vw; }
             .refresh-btn { font-size: 1.6vh; }
@@ -282,11 +104,9 @@
 </head>
 <body>
 <div class="projector-container">
-    <!-- HEADER -->
     <div class="header">
         <h1>🏆 Megatek ICT Quiz</h1>
         <div class="header-right">
-            <!-- TIMER -->
             <div class="timer-container">
                 <span class="timer-label">⏱</span>
                 <span class="timer-display" id="timerDisplay">--</span>
@@ -297,7 +117,6 @@
         </div>
     </div>
 
-    <!-- QUESTION AREA -->
     <div class="question-area">
         <div class="question-text" id="questionText">Load a question to begin</div>
         <div class="options-grid" id="optionsContainer">
@@ -309,82 +128,40 @@
         <div id="deadIndicator" style="display:none;" class="status-dead">💀 QUESTION DEAD</div>
     </div>
 
-    <!-- SCORES -->
     <div class="scores-container" id="scoresContainer">
         <div style="color:#888; font-size:1.8vh;">No schools in this round</div>
     </div>
 
-    <!-- FOOTER -->
     <div class="footer">📡 Live feed • Auto‑updates every 2 seconds</div>
     <div class="debug-info" id="debugInfo">Last updated: N/A</div>
 </div>
 
 <script>
     let lastState = null;
-    let timerInterval = null;
-    let timeLeft = 0;
     let currentQuestionId = null;
 
-    // ---------- TIMER FUNCTIONS ----------
-    function startTimer(seconds) {
-        clearInterval(timerInterval);
-        timeLeft = seconds;
-        updateTimerDisplay();
+    // ---------- Timer sync ----------
+    async function updateTimerDisplay() {
+        try {
+            const res = await fetch('/api/timer/state');
+            const data = await res.json();
+            const timerEl = document.getElementById('timerDisplay');
+            const timeUpMsg = document.getElementById('timeUpMessage');
+            timerEl.textContent = data.time_left !== undefined ? data.time_left : '--';
 
-        const timerEl = document.getElementById('timerDisplay');
-        const timeUpMsg = document.getElementById('timeUpMessage');
-        timeUpMsg.classList.remove('visible');
-
-        // Remove all classes
-        timerEl.classList.remove('warning', 'danger', 'time-up');
-
-        if (seconds <= 0) {
-            timerEl.textContent = '--';
-            return;
-        }
-
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            updateTimerDisplay();
-
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                // Show TIME UP!
-                const timeUpMsg = document.getElementById('timeUpMessage');
-                timeUpMsg.classList.add('visible');
-                const timerEl = document.getElementById('timerDisplay');
+            timerEl.classList.remove('warning', 'danger', 'time-up');
+            if (data.time_left <= 0) {
                 timerEl.classList.add('time-up');
-                timerEl.textContent = '0';
+                timeUpMsg.classList.add('visible');
+            } else {
+                timeUpMsg.classList.remove('visible');
+                if (data.time_left <= 5) timerEl.classList.add('danger');
+                else if (data.time_left <= 10) timerEl.classList.add('warning');
             }
-        }, 1000);
+        } catch (err) { console.error(err); }
     }
 
-    function updateTimerDisplay() {
-        const timerEl = document.getElementById('timerDisplay');
-        timerEl.textContent = timeLeft;
-
-        // Update color based on time left
-        timerEl.classList.remove('warning', 'danger', 'time-up');
-        if (timeLeft <= 0) {
-            timerEl.classList.add('time-up');
-        } else if (timeLeft <= 5) {
-            timerEl.classList.add('danger');
-        } else if (timeLeft <= 10) {
-            timerEl.classList.add('warning');
-        }
-    }
-
-    function stopTimer() {
-        clearInterval(timerInterval);
-        timerInterval = null;
-        const timerEl = document.getElementById('timerDisplay');
-        timerEl.classList.remove('warning', 'danger', 'time-up');
-        timerEl.textContent = '--';
-        document.getElementById('timeUpMessage').classList.remove('visible');
-    }
-
-    // ---------- FETCH STATE ----------
+    // ---------- Fetch state ----------
     async function fetchState() {
         try {
             const res = await fetch('/api/state');
@@ -393,33 +170,23 @@
             if (stateStr === lastState) return;
             lastState = stateStr;
 
-            // Round
             document.getElementById('roundName').textContent = state.round_name || 'No Round';
+            document.getElementById('questionText').textContent = state.question_text || 'No question loaded';
 
-            // Question
-            const questionText = state.question_text || 'No question loaded';
-            document.getElementById('questionText').textContent = questionText;
-
-            // Check if question changed
             if (state.question_id !== currentQuestionId) {
                 currentQuestionId = state.question_id;
-                // Restart timer if question is not dead and not answered
+                // Reset timer when question changes
+                await fetch('/api/timer/reset', { method: 'POST' });
+                // Auto-start if not dead and has question
                 if (!state.is_dead && state.question_id) {
-                    // Determine time limit based on round
-                    let timeLimit = 15; // default
-                    const roundName = state.round_name || '';
-                    if (roundName.includes('Round 4') || roundName.includes('Round 5')) {
-                        timeLimit = 10;
-                    }
-                    startTimer(timeLimit);
-                } else {
-                    stopTimer();
+                    await fetch('/api/timer/start', { method: 'POST' });
                 }
+                updateTimerDisplay();
             }
 
-            // If question is dead or no question, stop timer
             if (state.is_dead || !state.question_id) {
-                stopTimer();
+                await fetch('/api/timer/stop', { method: 'POST' });
+                updateTimerDisplay();
             }
 
             // Options
@@ -435,13 +202,11 @@
                 optionsContainer.innerHTML = '<div style="grid-column:span 2; text-align:center; color:#888; font-size:2vh;">No options loaded</div>';
             }
 
-            // Turn / Dead
             const turnEl = document.getElementById('currentSchool');
             const deadEl = document.getElementById('deadIndicator');
             if (state.is_dead) {
                 deadEl.style.display = 'block';
                 turnEl.style.display = 'none';
-                stopTimer();
             } else if (state.current_school) {
                 deadEl.style.display = 'none';
                 turnEl.textContent = `🎯 ${state.current_school.name} (Turn)`;
@@ -452,7 +217,6 @@
                 turnEl.style.display = 'inline-block';
             }
 
-            // Scores
             const scoresContainer = document.getElementById('scoresContainer');
             if (state.schools && state.schools.length) {
                 let html = '';
@@ -460,8 +224,8 @@
                     const pts = state.scores[school.id] || 0;
                     const isActive = (state.current_school && state.current_school.id === school.id && !state.is_dead);
                     html += `<div class="score-chip ${isActive ? 'active-school' : ''}">
-                        ${school.name} <span class="pts">${pts}</span>
-                    </div>`;
+                                ${school.name} <span class="pts">${pts}</span>
+                            </div>`;
                 });
                 scoresContainer.innerHTML = html;
             } else {
@@ -470,14 +234,13 @@
 
             document.getElementById('debugInfo').textContent = `Last updated: ${state.timestamp || 'N/A'}`;
 
-        } catch (err) {
-            console.error('Error fetching state:', err);
-        }
+        } catch (err) { console.error(err); }
     }
 
-    // ---------- START ----------
+    // ---------- Start ----------
     fetchState();
     setInterval(fetchState, 2000);
+    setInterval(updateTimerDisplay, 1000);
 </script>
 </body>
 </html>

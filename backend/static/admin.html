@@ -6,15 +6,12 @@
     <title>Megatek Quiz - Admin</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
+        /* same as before, plus timer controls styling */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f4f4f4; padding: 20px; }
         .admin-container { max-width: 1200px; margin: 0 auto; }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: white; padding: 15px 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         h1 { color: #cc0000; }
-        .round-selector { background: white; padding: 15px 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .question-box { background: white; padding: 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .question-box input[type="number"] { padding: 8px 12px; border: 2px solid #ddd; border-radius: 6px; width: 120px; font-size: 1rem; }
-        .question-box select { padding: 8px 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 1rem; margin-left: 10px; }
         .btn { padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .btn:hover { opacity: 0.8; transform: translateY(-1px); }
         .btn-primary { background: #28a745; color: white; }
@@ -22,6 +19,7 @@
         .btn-warning { background: #ffc107; color: #333; }
         .btn-secondary { background: #6c757d; color: white; }
         .btn-info { background: #17a2b8; color: white; }
+        .btn-success { background: #28a745; color: white; }
         .btn-reveal { background: #fd7e14; color: white; }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
         .hidden-answer { display: none; background: #d4edda; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 6px solid #28a745; }
@@ -41,12 +39,12 @@
         .scoreboard li .pts { font-weight: bold; color: #cc0000; }
         .projector-link { background: #17a2b8; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; margin-left: 10px; }
         .projector-link:hover { background: #138496; }
-        .question-used { color: #dc3545; font-weight: bold; }
-        .question-available { color: #28a745; font-weight: bold; }
-        .round-limit { background: #fff3cd; padding: 10px 15px; border-radius: 6px; margin: 10px 0; border-left: 6px solid #ffc107; }
         .options-grid { margin: 15px 0; }
         .options-grid li { list-style: none; padding: 5px 0; font-size: 1.1rem; }
         .options-grid li::before { content: "•"; color: #cc0000; font-weight: bold; display: inline-block; width: 20px; }
+        .timer-controls { display: flex; gap: 10px; align-items: center; background: #f8f9fa; padding: 10px 15px; border-radius: 8px; margin: 10px 0; flex-wrap: wrap; }
+        .timer-controls .btn { padding: 6px 16px; font-size: 0.9rem; }
+        .timer-display { font-size: 2rem; font-weight: bold; min-width: 80px; text-align: center; }
         @media (max-width: 768px) {
             .admin-container { padding: 10px; }
             header { flex-direction: column; gap: 10px; }
@@ -66,7 +64,7 @@
     </header>
 
     <!-- Round Selector -->
-    <div class="round-selector">
+    <div class="round-selector" style="background:white; padding:15px 25px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
         <label><strong>Select Round:</strong></label>
         <select id="roundSelect" style="padding:8px; margin-left:10px; min-width:200px;">
             <option value="">-- Select --</option>
@@ -76,36 +74,39 @@
     </div>
 
     <!-- Question Loader -->
-    <div class="question-box">
+    <div class="question-box" style="background:white; padding:25px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
         <label><strong>Load Question:</strong></label>
-        <input type="number" id="questionInput" min="1" max="150" placeholder="Enter 1-150">
+        <input type="number" id="questionInput" min="1" max="150" placeholder="Enter 1-150" style="padding:8px 12px; border:2px solid #ddd; border-radius:6px; width:120px; font-size:1rem;">
         <button id="loadQuestionBtn" class="btn btn-primary">Load</button>
         <span id="questionError" style="color:red; margin-left:10px;"></span>
         <div id="questionStatus" style="margin-top:10px;"></div>
         <hr>
-        <div id="questionDisplay">
-            <p style="color:#888;">Enter a question number and click Load.</p>
-        </div>
-        
+        <div id="questionDisplay"><p style="color:#888;">Enter a question number and click Load.</p></div>
         <div style="margin-top:15px;">
             <button id="revealAnswerBtn" class="btn btn-reveal">🔍 REVEAL ANSWER</button>
         </div>
         <div id="adminCorrectAnswer" class="hidden-answer"></div>
     </div>
 
+    <!-- Timer Controls -->
+    <div class="timer-controls" style="background:white; padding:15px 25px; border-radius:10px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        <span style="font-weight:bold;">⏱ Timer:</span>
+        <span class="timer-display" id="timerDisplay">--</span>
+        <button id="timerStartBtn" class="btn btn-success">▶ Start</button>
+        <button id="timerStopBtn" class="btn btn-warning">⏹ Stop</button>
+        <button id="timerResetBtn" class="btn btn-secondary">↺ Reset</button>
+        <span style="margin-left:10px; font-size:0.9rem; color:#888;">(15s for R1-3, 10s for R4-5)</span>
+    </div>
+
     <!-- Schools & Scoring -->
     <div style="display:flex; gap:20px; flex-wrap:wrap;">
         <div style="flex:2; min-width:300px;">
             <h3>🏫 Schools</h3>
-            <div id="schoolsContainer" class="schools-grid">
-                <p>Select a round to see schools.</p>
-            </div>
+            <div id="schoolsContainer" class="schools-grid"><p>Select a round to see schools.</p></div>
             <div class="status-bar">
                 <strong>Turn:</strong> <span id="currentTurnText">None</span>
                 <span id="turnStatus" style="margin-left:20px;"></span>
             </div>
-            
-            <!-- Score Buttons -->
             <div class="btn-group">
                 <button id="score5Btn" class="btn btn-primary" disabled>+5 Primary</button>
                 <button id="score2Btn" class="btn btn-warning" disabled>+2 Rebound</button>
@@ -117,8 +118,6 @@
                 <button id="resetRoundBtn" class="btn btn-danger" style="background:#6c757d;">🗑️ Reset Round</button>
             </div>
         </div>
-        
-        <!-- Scoreboard -->
         <div style="flex:1; min-width:250px;">
             <div class="scoreboard">
                 <h3>📊 Live Scores</h3>
@@ -152,6 +151,7 @@
     const questionError = document.getElementById('questionError');
     const questionStatus = document.getElementById('questionStatus');
     const questionCount = document.getElementById('questionCount');
+    const timerDisplay = document.getElementById('timerDisplay');
 
     const score5Btn = document.getElementById('score5Btn');
     const score2Btn = document.getElementById('score2Btn');
@@ -161,6 +161,9 @@
     const resetTurnBtn = document.getElementById('resetTurnBtn');
     const deadBtn = document.getElementById('deadBtn');
     const resetRoundBtn = document.getElementById('resetRoundBtn');
+    const timerStartBtn = document.getElementById('timerStartBtn');
+    const timerStopBtn = document.getElementById('timerStopBtn');
+    const timerResetBtn = document.getElementById('timerResetBtn');
 
     // ---------- Fetch Rounds ----------
     async function loadRounds() {
@@ -182,23 +185,18 @@
         const id = parseInt(this.value);
         if (!id) return;
         currentRoundId = id;
-        
-        // Get round details
         const res = await fetch('/api/rounds');
         const rounds = await res.json();
         const round = rounds.find(r => r.id === id);
         if (!round) return;
-        
         currentRoundSchools = round.schools;
         currentTurnIndex = 0;
         questionAnswered = false;
         questionDead = false;
-        
         renderSchools();
         updateTurn();
         loadScores(id);
         updateQuestionCount(id);
-        
         document.getElementById('roundStatus').textContent = `Active: ${round.name}`;
         questionDisplay.innerHTML = '<p style="color:#888;">Load a question to start.</p>';
         adminCorrect.innerHTML = '';
@@ -207,6 +205,8 @@
         questionStatus.innerHTML = '';
         enableButtons(false);
         await updateProjectorState(currentRoundId, null, 0, false);
+        // Reset timer display (just visual)
+        timerDisplay.textContent = '--';
     });
 
     // ---------- Load Question ----------
@@ -217,8 +217,6 @@
             return;
         }
         questionError.textContent = '';
-        
-        // Check round limits based on question number
         let errorMsg = null;
         if (currentRoundId === 1 && (qNum < 1 || qNum > 25)) {
             errorMsg = 'Round 1 only allows questions 1-25';
@@ -227,13 +225,10 @@
         } else if (currentRoundId === 3 && (qNum < 51 || qNum > 75)) {
             errorMsg = 'Round 3 only allows questions 51-75';
         }
-        
         if (errorMsg) {
             questionError.textContent = errorMsg;
             return;
         }
-        
-        // Check if question already used in this round
         const usedCheck = await fetch('/api/check_question_used', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -241,19 +236,16 @@
         });
         const usedData = await usedCheck.json();
         if (usedData.used) {
-            questionError.textContent = '⚠️ This question has already been used in this round!';
+            questionError.textContent = '⚠️ This question has already been used!';
             questionStatus.innerHTML = '<span style="color:#dc3545;">❌ Question already answered</span>';
             return;
         }
-        
-        // Check round question limit (max 25)
         const countRes = await fetch(`/api/round_questions_count/${currentRoundId}`);
         const countData = await countRes.json();
         if (countData.count >= 25) {
             questionError.textContent = '⚠️ This round already has 25 questions answered!';
             return;
         }
-        
         questionError.textContent = '';
         const res = await fetch(`/api/question/${qNum}`);
         if (!res.ok) {
@@ -262,8 +254,6 @@
         }
         const q = await res.json();
         currentQuestionId = q.id;
-        
-        // Display question
         let html = `<h3>Q${q.id}. ${q.question}</h3><ul class="options-grid">`;
         const letters = ['A', 'B', 'C', 'D'];
         q.options.forEach((opt, i) => {
@@ -271,8 +261,6 @@
         });
         html += '</ul>';
         questionDisplay.innerHTML = html;
-
-        // Store correct answer
         if (q.correct !== undefined && q.correct !== null) {
             correctAnswerLetter = letters[q.correct];
             adminCorrect.innerHTML = `<span style="font-weight:bold; color:#155724;">✅ Correct Answer: ${correctAnswerLetter}</span>`;
@@ -281,8 +269,6 @@
             adminCorrect.innerHTML = `<span style="color:red;">⚠️ Correct answer not found.</span>`;
         }
         adminCorrect.classList.remove('visible');
-
-        // Reset turn
         currentTurnIndex = 0;
         questionAnswered = false;
         questionDead = false;
@@ -295,9 +281,36 @@
         score0Btn.disabled = false;
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
-
         await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
+        // Start timer automatically when question loads
+        await fetch('/api/timer/start', { method: 'POST' });
+        updateTimerDisplay();
     });
+
+    // ---------- Timer Controls ----------
+    async function updateTimerDisplay() {
+        const res = await fetch('/api/timer/state');
+        const data = await res.json();
+        timerDisplay.textContent = data.time_left !== undefined ? data.time_left : '--';
+    }
+
+    timerStartBtn.addEventListener('click', async function() {
+        await fetch('/api/timer/start', { method: 'POST' });
+        updateTimerDisplay();
+    });
+
+    timerStopBtn.addEventListener('click', async function() {
+        await fetch('/api/timer/stop', { method: 'POST' });
+        updateTimerDisplay();
+    });
+
+    timerResetBtn.addEventListener('click', async function() {
+        await fetch('/api/timer/reset', { method: 'POST' });
+        updateTimerDisplay();
+    });
+
+    // Periodically update timer display
+    setInterval(updateTimerDisplay, 1000);
 
     // ---------- Reveal Answer ----------
     revealBtn.addEventListener('click', function() {
@@ -313,12 +326,10 @@
         let html = '';
         currentRoundSchools.forEach((school, idx) => {
             const activeClass = (idx === currentTurnIndex && !questionAnswered && !questionDead) ? 'active' : '';
-            html += `
-                <div class="school-card ${activeClass}" data-idx="${idx}">
-                    <div class="name">${school.name}</div>
-                    <div class="score" id="score-${school.id}">0</div>
-                </div>
-            `;
+            html += `<div class="school-card ${activeClass}" data-idx="${idx}">
+                        <div class="name">${school.name}</div>
+                        <div class="score" id="score-${school.id}">0</div>
+                    </div>`;
         });
         schoolsContainer.innerHTML = html;
         document.querySelectorAll('.school-card').forEach(card => {
@@ -334,35 +345,30 @@
         });
     }
 
-    // ---------- Update Turn ----------
     function updateTurn() {
         if (!currentRoundSchools.length || currentTurnIndex >= currentRoundSchools.length) {
             currentTurnText.textContent = 'No active school';
             return;
         }
         const school = currentRoundSchools[currentTurnIndex];
-        const status = questionDead ? '💀 Question Dead' : 
-                      questionAnswered ? '✅ Answered' : '🎯 Taking turn';
+        const status = questionDead ? '💀 Question Dead' : questionAnswered ? '✅ Answered' : '🎯 Taking turn';
         currentTurnText.textContent = `${school.name} (${currentTurnIndex + 1}/${currentRoundSchools.length})`;
         turnStatus.textContent = status;
         turnStatus.style.color = questionDead ? '#dc3545' : questionAnswered ? '#28a745' : '#cc0000';
-        
         document.querySelectorAll('.school-card').forEach(card => {
             const idx = parseInt(card.dataset.idx);
             card.classList.toggle('active', idx === currentTurnIndex && !questionAnswered && !questionDead);
         });
     }
 
-    // ---------- Enable/Disable Buttons ----------
     function enableButtons(enabled) {
         const state = enabled && !questionAnswered && !questionDead && currentRoundSchools.length > 0;
-        const reboundState = state && currentTurnIndex > 0; // Only enable rebound after a pass
-        score5Btn.disabled = !state || currentTurnIndex > 0; // Only primary for first school
+        const reboundState = state && currentTurnIndex > 0;
+        score5Btn.disabled = !state || currentTurnIndex > 0;
         score2Btn.disabled = !reboundState;
         score0Btn.disabled = !state;
         scoreNeg2Btn.disabled = !state;
         scoreNeg5Btn.disabled = !state;
-        
         if (!state) {
             score5Btn.disabled = true;
             score2Btn.disabled = true;
@@ -379,10 +385,8 @@
             alert('This question is already closed.');
             return;
         }
-        
         const school = currentRoundSchools[currentTurnIndex];
         if (!school) return;
-
         const res = await fetch('/api/score', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -397,7 +401,6 @@
                 is_dead: false
             })
         });
-        
         if (res.ok) {
             questionAnswered = true;
             enableButtons(false);
@@ -407,26 +410,19 @@
             updateTurn();
             currentTurnText.textContent += ' ✅ Done!';
             await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
+            // Stop timer after scoring
+            await fetch('/api/timer/stop', { method: 'POST' });
+            updateTimerDisplay();
         } else {
             alert('Failed to award points.');
         }
     }
 
-    // ---------- Button Handlers ----------
     score5Btn.addEventListener('click', () => awardPoints(5, 'primary'));
     score2Btn.addEventListener('click', () => awardPoints(2, 'rebound'));
     score0Btn.addEventListener('click', () => awardPoints(0, 'skip'));
     scoreNeg2Btn.addEventListener('click', () => awardPoints(-2, 'penalty'));
     scoreNeg5Btn.addEventListener('click', () => awardPoints(-5, 'major'));
-
-    // ---------- Pass / Rebound Logic ----------
-    document.addEventListener('DOMContentLoaded', function() {
-        // We'll use a pass button instead of wrong button
-        // Actually, we'll repurpose the flow: clicking on a school manually
-        // Or we can add a "Pass" button
-        // For now, clicking on the next school manually passes the turn
-        // This is handled by the click event on school cards
-    });
 
     // ---------- Reset Turn ----------
     resetTurnBtn.addEventListener('click', function() {
@@ -446,6 +442,9 @@
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
         updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
+        // Reset timer
+        fetch('/api/timer/reset', { method: 'POST' });
+        updateTimerDisplay();
     });
 
     // ---------- Dead Button ----------
@@ -460,7 +459,6 @@
             enableButtons(false);
             questionStatus.innerHTML = '<span style="color:#dc3545;">💀 Question Dead</span>';
             updateTurn();
-            // Still record that the question was used
             fetch('/api/score', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -477,13 +475,16 @@
             });
             updateQuestionCount(currentRoundId);
             updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, true);
+            // Stop timer
+            fetch('/api/timer/stop', { method: 'POST' });
+            updateTimerDisplay();
         }
     });
 
     // ---------- Reset Round ----------
     resetRoundBtn.addEventListener('click', async function() {
         if (!currentRoundId) return;
-        if (!confirm(`Reset ALL scores for this round? This cannot be undone!`)) return;
+        if (!confirm('Reset ALL scores for this round? This cannot be undone!')) return;
         const res = await fetch(`/api/reset_round/${currentRoundId}`, { method: 'POST' });
         if (res.ok) {
             alert('Round reset successfully.');
@@ -497,6 +498,8 @@
             updateTurn();
             enableButtons(false);
             await updateProjectorState(currentRoundId, null, 0, false);
+            fetch('/api/timer/reset', { method: 'POST' });
+            updateTimerDisplay();
         } else {
             alert('Failed to reset round.');
         }
@@ -519,14 +522,12 @@
         scoreBoard.innerHTML = html;
     }
 
-    // ---------- Update Question Count ----------
     async function updateQuestionCount(roundId) {
         const res = await fetch(`/api/round_questions_count/${roundId}`);
         const data = await res.json();
         questionCount.textContent = `Questions used: ${data.count}/25`;
     }
 
-    // ---------- Update Projector State ----------
     async function updateProjectorState(roundId, questionId, turnIndex, isDead) {
         await fetch('/api/update_state', {
             method: 'POST',
@@ -542,6 +543,8 @@
 
     // ---------- Initial ----------
     enableButtons(false);
+    updateTimerDisplay();
+    setInterval(updateTimerDisplay, 1000);
 </script>
 </body>
 </html>
