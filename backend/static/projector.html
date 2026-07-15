@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>📺 Quiz Projector</title>
     <style>
-        /* Full-screen, no scrolling */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { width: 100vw; height: 100vh; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a1a; color: white; }
         .projector-container {
@@ -140,7 +139,6 @@
     let lastState = null;
     let currentQuestionId = null;
 
-    // ---------- Timer sync ----------
     async function updateTimerDisplay() {
         try {
             const res = await fetch('/api/timer/state');
@@ -161,7 +159,6 @@
         } catch (err) { console.error(err); }
     }
 
-    // ---------- Fetch state ----------
     async function fetchState() {
         try {
             const res = await fetch('/api/state');
@@ -175,12 +172,9 @@
 
             if (state.question_id !== currentQuestionId) {
                 currentQuestionId = state.question_id;
-                // Reset timer when question changes
+                // Reset timer, but do NOT auto-start – user controls it
                 await fetch('/api/timer/reset', { method: 'POST' });
-                // Auto-start if not dead and has question
-                if (!state.is_dead && state.question_id) {
-                    await fetch('/api/timer/start', { method: 'POST' });
-                }
+                // Remove auto-start – no fetch('/api/timer/start')
                 updateTimerDisplay();
             }
 
@@ -237,7 +231,6 @@
         } catch (err) { console.error(err); }
     }
 
-    // ---------- Start ----------
     fetchState();
     setInterval(fetchState, 2000);
     setInterval(updateTimerDisplay, 1000);

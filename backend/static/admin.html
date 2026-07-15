@@ -6,6 +6,7 @@
     <title>Megatek Quiz - Admin</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
+        /* same as before */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: #f4f4f4; padding: 20px; }
         .admin-container { max-width: 1200px; margin: 0 auto; }
@@ -134,7 +135,7 @@
     let questionAnswered = false;
     let questionDead = false;
     let correctAnswerLetter = '';
-    let roundMaxQuestions = 30;   // <-- CHANGED to 30
+    let roundMaxQuestions = 30;
     
     const roundSelect = document.getElementById('roundSelect');
     const questionInput = document.getElementById('questionInput');
@@ -215,7 +216,6 @@
         }
         questionError.textContent = '';
         let errorMsg = null;
-        // UPDATED RANGES: 1-30, 31-60, 61-90
         if (currentRoundId === 1 && (qNum < 1 || qNum > 30)) {
             errorMsg = 'Round 1 only allows questions 1-30';
         } else if (currentRoundId === 2 && (qNum < 31 || qNum > 60)) {
@@ -240,7 +240,7 @@
         }
         const countRes = await fetch(`/api/round_questions_count/${currentRoundId}`);
         const countData = await countRes.json();
-        if (countData.count >= 30) {   // <-- CHANGED to 30
+        if (countData.count >= 30) {
             questionError.textContent = '⚠️ This round already has 30 questions answered!';
             return;
         }
@@ -280,7 +280,8 @@
         scoreNeg2Btn.disabled = false;
         scoreNeg5Btn.disabled = false;
         await updateProjectorState(currentRoundId, currentQuestionId, currentTurnIndex, false);
-        await fetch('/api/timer/start', { method: 'POST' });
+        // Timer RESET but NOT auto-start – user must click Start
+        await fetch('/api/timer/reset', { method: 'POST' });
         updateTimerDisplay();
     });
 
@@ -518,7 +519,7 @@
     async function updateQuestionCount(roundId) {
         const res = await fetch(`/api/round_questions_count/${roundId}`);
         const data = await res.json();
-        questionCount.textContent = `Questions used: ${data.count}/30`;  // <-- CHANGED to 30
+        questionCount.textContent = `Questions used: ${data.count}/30`;
     }
 
     async function updateProjectorState(roundId, questionId, turnIndex, isDead) {
