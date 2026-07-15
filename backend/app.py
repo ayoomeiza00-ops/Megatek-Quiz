@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 import threading
 import time
+import sys
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'dev-key-please-change')
@@ -42,16 +43,26 @@ timer_state = {
     'round_name': ''
 }
 
-# ---------- Timer Countdown Thread ----------
+# ---------- Timer Background Thread ----------
 def timer_countdown():
+    """Background thread to decrement timer every second."""
     global timer_state
+    print("🟢 Timer thread started!", file=sys.stderr)
     while True:
-        if timer_state['running'] and timer_state['time_left'] > 0:
-            timer_state['time_left'] -= 1
-            if timer_state['time_left'] <= 0:
-                timer_state['running'] = False
-        time.sleep(1)
+        try:
+            if timer_state['running'] and timer_state['time_left'] > 0:
+                timer_state['time_left'] -= 1
+                # Log only when it changes to verify activity
+                if timer_state['time_left'] % 5 == 0:
+                    print(f"⏱️ Timer: {timer_state['time_left']}s left", file=sys.stderr)
+                if timer_state['time_left'] <= 0:
+                    timer_state['running'] = False
+                    print("⏰ Timer reached zero!", file=sys.stderr)
+            time.sleep(1)
+        except Exception as e:
+            print(f"❌ Timer error: {e}", file=sys.stderr)
 
+# Start the daemon thread (stops when app stops)
 timer_thread = threading.Thread(target=timer_countdown, daemon=True)
 timer_thread.start()
 
